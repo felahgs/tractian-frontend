@@ -1,0 +1,10 @@
+
+yarn test --coverage
+yarn audit --groups dependencies
+if ! yarn check-outdated; then
+  echo
+  echo "=============================================="
+  echo "   \033[1;33mWarning: Some dependencies are outdated.\033[0m"
+  echo "=============================================="
+  echo
+fi

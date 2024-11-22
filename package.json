@@ -6,19 +6,52 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky",
+    "test": "jest",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "check-outdated": "npx --yes -- check-outdated --ignore-pre-releases --columns name,type,current,latest,changes --types major,minor,patch,reverted"
   },
   "dependencies": {
+    "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
-    "next": "15.0.3"
+    "sass": "^1.81.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@chromatic-com/storybook": "^3.2.2",
+    "@storybook/addon-controls": "^8.4.5",
+    "@storybook/addon-essentials": "^8.4.5",
+    "@storybook/addon-interactions": "^8.4.5",
+    "@storybook/addon-onboarding": "^8.4.5",
+    "@storybook/blocks": "^8.4.5",
+    "@storybook/nextjs": "^8.4.5",
+    "@storybook/react": "^8.4.5",
+    "@storybook/test": "^8.4.5",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "@types/jest": "^29.5.14",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "15.0.3"
+    "eslint-config-next": "15.0.3",
+    "eslint-plugin-storybook": "^0.11.1",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "lint-staged": "^15.2.10",
+    "prettier": "3.3.3",
+    "storybook": "^8.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.(js|ts|tsx)": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }

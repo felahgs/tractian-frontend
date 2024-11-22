@@ -1,0 +1,16 @@
+#!/bin/sh
+if ! head -1 "$1" | grep -qEi "^(Merge\s.*|((Feature|Fix|Docs|Style|Refactor|Performance|Test|Chore|Revert|WIP|Merge)(\(.+?\))?: .{1,}))$"; then
+  echo "\n\033[0;31mThe commit message is invalid.\033[0m
+The message should follow the semantic commit message pattern.
+Try writing a message like the following and using one of the tags:
+
+\033[0;32m(Feature|Fix|Docs|Style|Refactor|Performance|Test|Chore|Revert|WIP|Merge)\033[0m:\033[0;33m {commit message}\033[0m\n" >&2
+
+  exit 1
+fi
+
+if ! head -1 "$1" | grep -qE "^.{1,100}$"; then
+  echo "Aborting commit. Your commit message is too long." >&2
+
+  exit 1
+fi
