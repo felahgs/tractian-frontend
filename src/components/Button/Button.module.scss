@@ -1,4 +1,4 @@
-@use "/src/styles/colors.scss";
+@use "../../styles/colors.scss";
 
 .button {
     background-color: colors.$button-primary;
@@ -7,7 +7,7 @@
     cursor: pointer;
     font-family: "Inter", serif;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 12px;
     height: 32px;
     padding: 8px 14px;
     border-radius: 4px;
@@ -38,7 +38,7 @@
 
 .conpact {
     border-radius: 3px;
-    font-size: 12px;
+    font-size: 10px;
     height: 24px; 
     padding: 5px 8px;
 }

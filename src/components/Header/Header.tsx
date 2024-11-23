@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import Button from "../Button/Button";
 // import logo from "../../../public/logo.png";
-import { ReactComponent as Gold } from "../../../public/icons/gold.svg";
+import GoldSVG from "@/icons/gold.svg";
 
 import styles from "./Header.module.scss";
 import Flex from "@/components/Layout/Flex";
@@ -19,7 +19,7 @@ function Header() {
       <Image height={15} width={103} src={"/logo.png"} alt="tractian logo" />
       <Flex>
         <Button active conpact>
-          <Gold />
+          <Image height={14} width={14} src={GoldSVG} alt="gold icon" />
           Apex Unit
         </Button>
         <Button conpact>Tobias Unit</Button>

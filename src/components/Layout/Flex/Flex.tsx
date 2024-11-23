@@ -1,3 +1,4 @@
+"use client";
 import React, { CSSProperties, ElementType } from "react";
 
 interface FlexPropsBase extends React.HTMLAttributes<HTMLDivElement> {
@@ -18,6 +19,8 @@ interface FlexPropsBase extends React.HTMLAttributes<HTMLDivElement> {
   pb?: CSSProperties["paddingBottom"];
   pl?: CSSProperties["paddingLeft"];
   pr?: CSSProperties["paddingRight"];
+  h?: CSSProperties["height"];
+  w?: CSSProperties["width"];
 }
 
 type FlexProps<T extends ElementType = "div"> = FlexPropsBase & {
@@ -33,6 +36,8 @@ const Flex = <T extends ElementType = "div">({
   wrap = "nowrap",
   gap = "small",
   className = "",
+  h,
+  w,
   p,
   pt,
   pb,
@@ -57,17 +62,19 @@ const Flex = <T extends ElementType = "div">({
       </Component>
       <style jsx>{`
         .flex-component {
+          align-items: ${align};
           display: flex;
           flex-direction: ${direction};
-          justify-content: ${justify};
-          align-items: ${align};
           flex-wrap: ${wrap};
           gap: ${calculatedGap};
+          height: ${h};
+          justify-content: ${justify};
           padding: ${p};
           padding-left: ${pl};
           padding-right: ${pr};
           padding-top: ${pt};
           padding-bottom: ${pb};
+          width: ${w};
         }
       `}</style>
     </>

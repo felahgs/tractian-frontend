@@ -1,0 +1,17 @@
+@use "../../styles/colors.scss";
+
+.text {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.caption {
+    font-size: 16px;
+    color: colors.$writing-caption;
+    font-weight: 500;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+}
