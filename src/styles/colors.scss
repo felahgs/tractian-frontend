@@ -1,6 +1,7 @@
 $header: #17192D;
 
 $neutral-white: #FFFFFF;
+$neutral-gray-200: #D8DFE6;
 $neutral-gray-600: #77818C;
 $neutral-gray-950: #24292F;
 
@@ -12,11 +13,15 @@ $blue-900: #023B78;
 $danger: #ED3833;
 $success: #52C41A;
 
-$primary: $blue-500;
+$disabled: #C1C9D2;
+
+$button-active: $blue-500;
+$button-primary: $blue-900;
+$button-secondary: $neutral-white;
 
 $writing-caption: $neutral-gray-600;
 $writing-title: $neutral-gray-950;
 $writing-placeholder-disable: #C1C9D2;
 
-$shapes-border-card:#D8DFE6;
+$shapes-border-card:$neutral-gray-200;
 $shapes-divider: #E3EAEF;

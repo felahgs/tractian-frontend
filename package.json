@@ -14,6 +14,7 @@
     "check-outdated": "npx --yes -- check-outdated --ignore-pre-releases --columns name,type,current,latest,changes --types major,minor,patch,reverted"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.2",
+    "@newhighsco/storybook-addon-svgr": "^2.0.37",
     "@storybook/addon-controls": "^8.4.5",
     "@storybook/addon-essentials": "^8.4.5",
     "@storybook/addon-interactions": "^8.4.5",
@@ -28,6 +30,7 @@
     "@storybook/blocks": "^8.4.5",
     "@storybook/nextjs": "^8.4.5",
     "@storybook/react": "^8.4.5",
+    "@storybook/react-webpack5": "^8.4.5",
     "@storybook/test": "^8.4.5",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",

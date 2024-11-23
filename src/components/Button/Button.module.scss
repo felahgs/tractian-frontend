@@ -1,0 +1,57 @@
+@use "/src/styles/colors.scss";
+
+.button {
+    background-color: colors.$button-primary;
+    border: 1px solid colors.$button-primary;
+    color: colors.$neutral-white;
+    cursor: pointer;
+    font-family: "Inter", serif;
+    font-weight: 600;
+    font-size: 14px;
+    height: 32px;
+    padding: 8px 14px;
+    border-radius: 4px;
+}
+
+.button:hover {
+    filter: brightness(1.2) contrast(1.1); 
+  }
+  
+.button:active {
+    background-color: colors.$button-active;
+    border: 1px solid colors.$button-active;
+    filter: brightness(0.8) contrast(1.1); 
+}
+
+.active {
+    background-color: colors.$button-active;
+    border: 1px solid colors.$button-active;
+}
+
+.button:disabled {
+    background-color: colors.$disabled; 
+    border-color: colors.$disabled;
+    cursor: default;
+    filter: none; 
+    opacity: 0.6; 
+  }
+
+.conpact {
+    border-radius: 3px;
+    font-size: 12px;
+    height: 24px; 
+    padding: 5px 8px;
+}
+
+.secondary {
+    background-color: colors.$button-secondary;
+    border: 1px solid colors.$shapes-border-card;
+    color: colors.$neutral-gray-600;
+}
+
+.content {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    gap: 8px;
+}
