@@ -26,8 +26,9 @@ const Text: React.FC<TextProps> = ({
   ...rest
 }) => {
   const Component = as;
+  const isHeader = ["h1", "h2", "h3", "h4", "h5", "h6"].includes(as);
 
-  const textClass = styles[type || "text"];
+  const textClass = isHeader ? "" : styles[type || "text"];
   const sizeClass = size ? styles[size] : "";
   const weightClass = weight ? styles[weight] : "";
   const alignClass = align ? styles[align] : "";
@@ -36,7 +37,7 @@ const Text: React.FC<TextProps> = ({
     <Component
       className={clsx(
         styles.textComponent,
-        textClass,
+        type && textClass,
         sizeClass,
         weightClass,
         alignClass,

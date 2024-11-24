@@ -1,0 +1,19 @@
+@use "../../styles/colors.scss";
+
+.container {
+    background-color: colors.$neutral-white;
+  }
+  
+  .title {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .message {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+  
+  

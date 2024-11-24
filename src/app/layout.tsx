@@ -5,6 +5,7 @@ import "@/styles/globals.scss";
 import Header from "@/components/Header/Header";
 
 import styles from "./layout.module.scss";
+import { getCompanies } from "@/services/companies";
 
 export const metadata: Metadata = {
   title: "Tractian",
@@ -16,15 +17,19 @@ const inter = Inter({
   display: "swap",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const data = await getCompanies();
+
+  console.log("rendering layout");
+
   return (
     <html lang="en" className={inter.className}>
       <body>
-        <Header />
+        <Header companies={data} />
         <main className={styles.main}>{children}</main>
       </body>
     </html>

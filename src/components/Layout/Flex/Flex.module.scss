@@ -1,17 +1,3 @@
-$gap-values: (
-  sm: 8px,
-  md: 12px,
-  lg: 16px,
-  xl: 24px
-);
-
-$padding-values: (
-  sm: 8px,
-  md: 12px,
-  lg: 16px,
-  xl: 24px
-);
-
 .flex-component {
   display: flex;
   align-items: stretch;
@@ -37,15 +23,15 @@ $padding-values: (
   &.wrap { flex-wrap: wrap; }
   &.wrap-reverse { flex-wrap: wrap-reverse; }
 
-  &.gap-sm { gap: map-get($gap-values, sm); }
-  &.gap-md { gap: map-get($gap-values, md); }
-  &.gap-lg { gap: map-get($gap-values, lg); }
-  &.gap-xl { gap: map-get($gap-values, xl); }
+  &.gap-sm { gap: 8px; }
+  &.gap-md { gap: 12px; }
+  &.gap-lg { gap: 16px; }
+  &.gap-xl { gap: 24px; }
 
-  &.padding-sm { padding: map-get($padding-values, sm); }
-  &.padding-md { padding: map-get($padding-values, md); }
-  &.padding-lg { padding: map-get($padding-values, lg); }
-  &.padding-xl { padding: map-get($padding-values, xl); }
+  &.padding-sm { padding: 8px; }
+  &.padding-md { padding: 12px; }
+  &.padding-lg { padding: 16px; }
+  &.padding-xl { padding: 24px; }
   
   &.padding-top-sm { padding-top: 8px; }
   &.padding-bottom-sm { padding-bottom: 8px; }

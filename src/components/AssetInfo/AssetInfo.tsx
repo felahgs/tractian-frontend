@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
 import React from "react";
 import clsx from "clsx";
 
@@ -38,7 +38,7 @@ function AssetInfo({ className }: AssetInfoProps) {
             align="center"
             className={styles.imageContainer}
           >
-            <Image width={336} height={226} src="" alt="asset-image" />
+            {/* <Image width={336} height={226} src="" alt="asset-image" /> */}
           </Flex>
 
           <Flex direction="column" justify="center" gap="none" fluid>
@@ -49,7 +49,6 @@ function AssetInfo({ className }: AssetInfoProps) {
               <Text type="caption">Motor Elétrico (Trifásico)</Text>
             </Flex>
 
-            {/* <div className={styles.divider} /> */}
             <Divider />
 
             <Flex direction="column" gap="none">

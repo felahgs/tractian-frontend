@@ -1,23 +1,27 @@
 @use "../../styles/colors.scss";
 
 .textComponent {
-  margin: 0;
+  font-family: 'Inter';
   line-height: 24px;
 
   &.text {
     font-size: 14px;
     font-weight: 400;
+    margin: 0;
   }
     
   &.caption {
     font-size: 16px;
     color: colors.$writing-caption;
     font-weight: 400;
+    margin: 0;
   }
   
   &.title {
     font-size: 20px;
     font-weight: 500;
+    margin: 0;
+
   }
   
   &.sm { font-size: 14px; }

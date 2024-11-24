@@ -14,5 +14,20 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    companies: [
+      {
+        id: "1",
+        name: "Company 1",
+      },
+      {
+        id: "2",
+        name: "Company 2",
+      },
+      {
+        id: "3",
+        name: "Company 3",
+      },
+    ],
+  },
 };
