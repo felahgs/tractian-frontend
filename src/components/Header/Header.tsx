@@ -19,11 +19,17 @@ function Header() {
       <Image height={15} width={103} src={"/logo.png"} alt="tractian logo" />
       <Flex>
         <Button active conpact>
-          <Image height={14} width={14} src={GoldSVG} alt="gold icon" />
+          <GoldSVG />
           Apex Unit
         </Button>
-        <Button conpact>Tobias Unit</Button>
-        <Button conpact>Jaguar Unit</Button>
+        <Button conpact>
+          <GoldSVG />
+          Tobias Unit
+        </Button>
+        <Button conpact>
+          <GoldSVG />
+          Jaguar Unit
+        </Button>
       </Flex>
     </Flex>
   );

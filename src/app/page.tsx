@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import AssetInfo from "@/components/AssetInfo/AssetInfo";
 import AssetsTree from "@/components/AssetsTreeView/AssetsTreeView";
 import Flex from "@/components/Layout/Flex";
@@ -22,32 +20,10 @@ export default function Home() {
           </Text>
         </Flex>
         <Flex gap="sm">
-          <Button
-            icon={
-              <Image
-                className={styles.icon}
-                height={16}
-                width={16}
-                src={ThunderboldSVG}
-                alt="icon"
-              />
-            }
-            variant="secondary"
-          >
+          <Button icon={<ThunderboldSVG />} variant="secondary">
             Sensor de Energia
           </Button>
-          <Button
-            icon={
-              <Image
-                className={styles.icon}
-                height={16}
-                width={16}
-                src={CritcalSVG}
-                alt="icon"
-              />
-            }
-            variant="secondary"
-          >
+          <Button icon={<CritcalSVG />} variant="secondary">
             Crítico
           </Button>
         </Flex>

@@ -1,0 +1,11 @@
+@use "../styles/colors.scss";
+
+.main {
+  border: 1px solid colors.$shapes-border-card;
+  border-radius: 4px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: colors.$neutral-white;
+  height: calc(100% - 110px);
+  margin: 8px; 
+  padding: 18px 16px;
+}

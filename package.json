@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@newhighsco/next-plugin-svgr": "^3.0.145",
+    "@svgr/webpack": "^8.1.0",
     "axios": "^1.7.7",
     "clsx": "^2.1.1",
     "next": "^15.0.3",

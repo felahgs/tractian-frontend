@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ReactComponent as Gold } from "@/icons/gold.svg";
+import Gold from "@/icons/gold.svg";
 
 import Button from "./Button";
 

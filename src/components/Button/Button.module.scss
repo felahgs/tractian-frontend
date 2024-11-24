@@ -3,24 +3,33 @@
 .button {
     background-color: colors.$button-primary;
     border: 1px solid colors.$button-primary;
+    border-radius: 4px;
     color: colors.$neutral-white;
     cursor: pointer;
     font-family: "Inter", serif;
-    font-weight: 600;
     font-size: 12px;
+    font-weight: 600;
     height: 32px;
     padding: 8px 14px;
-    border-radius: 4px;
+    transition: background-color 0.4s ease, color 0.4s ease, fill 0.4s ease; 
+
+    path {
+        fill: colors.$neutral-white;
+    }
 }
 
-.button:hover {
-    filter: brightness(1.2) contrast(1.1); 
+.button:hover:not(.active):not(:active) {
+    filter: opacity(60%);
   }
   
 .button:active {
     background-color: colors.$button-active;
     border: 1px solid colors.$button-active;
-    filter: brightness(0.8) contrast(1.1); 
+    color: colors.$neutral-white;
+
+    path {
+        fill: colors.$neutral-white;
+    }
 }
 
 .active {
@@ -47,11 +56,15 @@
     background-color: colors.$button-secondary;
     border: 1px solid colors.$shapes-border-card;
     color: colors.$neutral-gray-600;
+
+    path {
+        fill: colors.$button-active;
+    }
 }
 
 .content {
-    display: flex;
     align-content: center;
     align-items: center;
+    display: flex;
     gap: 8px;
 }

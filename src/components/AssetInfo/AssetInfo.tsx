@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 import clsx from "clsx";
@@ -7,6 +9,9 @@ import Text from "@/components/Text";
 
 import styles from "./AssetInfo.module.scss";
 import Divider from "../Divider";
+import Avatar from "@/components/Avatar";
+
+import SVG from "@/icons/globe.svg";
 
 interface AssetInfoProps {
   className: string;
@@ -18,6 +23,7 @@ function AssetInfo({ className }: AssetInfoProps) {
       <Flex as="header" align="center" className={styles.header}>
         <Text type="title">MOTORS H12D - Stage 3</Text>
         <Text>icon</Text>
+        <SVG width="12px" height="12px" />
       </Flex>
 
       <div className={styles.content}>
@@ -51,7 +57,7 @@ function AssetInfo({ className }: AssetInfoProps) {
                 Responsáveis
               </Text>
               <Flex>
-                <Text>AVATAR</Text>
+                <Avatar size={24} initials="E" />
                 <Text type="caption">Elétrica</Text>
               </Flex>
             </Flex>
