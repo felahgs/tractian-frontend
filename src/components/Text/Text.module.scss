@@ -1,17 +1,36 @@
 @use "../../styles/colors.scss";
 
-.text {
+.textComponent {
+  margin: 0;
+  line-height: 24px;
+
+  &.text {
     font-size: 14px;
     font-weight: 400;
-}
-
-.caption {
+  }
+    
+  &.caption {
     font-size: 16px;
     color: colors.$writing-caption;
+    font-weight: 400;
+  }
+  
+  &.title {
+    font-size: 20px;
     font-weight: 500;
+  }
+  
+  &.sm { font-size: 14px; }
+  &.md { font-size: 16px; }
+  &.lg { font-size: 18px; }
+  &.xl { font-size: 20px; }
+  &.light { font-weight: light; }
+  &.normal { font-weight: normal; }
+  &.bold { font-weight: bold; }
+  &.left { text-align: left; }
+  &.center { text-align: center; }
+  &.right { text-align: right; }
+  &.normalLineHeight { line-height: normal; }
 }
 
-.title {
-    font-size: 20px;
-    font-weight: 600;
-}
+

@@ -31,23 +31,17 @@ describe("Flex Component", () => {
 
   it("should apply the correct gap value for small, medium, and large", () => {
     const { container: smallContainer } = render(
-      <Flex gap="small">
+      <Flex gap="sm">
         <div>Test content</div>
       </Flex>,
     );
     const { container: mediumContainer } = render(
-      <Flex gap="medium">
+      <Flex gap="md">
         <div>Test content</div>
       </Flex>,
     );
     const { container: largeContainer } = render(
-      <Flex gap="large">
-        <div>Test content</div>
-      </Flex>,
-    );
-
-    const { container: customContainer } = render(
-      <Flex gap="20px">
+      <Flex gap="lg">
         <div>Test content</div>
       </Flex>,
     );
@@ -55,6 +49,5 @@ describe("Flex Component", () => {
     expect(smallContainer.querySelector("div")).toBeInTheDocument();
     expect(mediumContainer.querySelector("div")).toBeInTheDocument();
     expect(largeContainer.querySelector("div")).toBeInTheDocument();
-    expect(customContainer.querySelector("div")).toBeInTheDocument();
   });
 });

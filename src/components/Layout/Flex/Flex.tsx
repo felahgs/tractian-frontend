@@ -1,5 +1,7 @@
 "use client";
-import React, { CSSProperties, ElementType } from "react";
+import React, { ElementType } from "react";
+import clsx from "clsx"; // Import clsx
+import styles from "./Flex.module.scss"; // Import the SASS styles
 
 interface FlexPropsBase extends React.HTMLAttributes<HTMLDivElement> {
   direction?: "row" | "row-reverse" | "column" | "column-reverse";
@@ -11,16 +13,10 @@ interface FlexPropsBase extends React.HTMLAttributes<HTMLDivElement> {
     | "space-around";
   align?: "flex-start" | "center" | "flex-end" | "stretch";
   wrap?: "nowrap" | "wrap" | "wrap-reverse";
-  gap?: "small" | "medium" | "large" | CSSProperties["gap"];
-  style?: React.CSSProperties;
-  children?: React.ReactNode;
-  p?: CSSProperties["padding"];
-  pt?: CSSProperties["paddingTop"];
-  pb?: CSSProperties["paddingBottom"];
-  pl?: CSSProperties["paddingLeft"];
-  pr?: CSSProperties["paddingRight"];
-  h?: CSSProperties["height"];
-  w?: CSSProperties["width"];
+  gap?: "none" | "sm" | "md" | "lg" | "xl";
+  p?: "none" | "sm" | "md" | "lg" | "xl";
+  fluid?: boolean;
+  fluidH?: boolean;
 }
 
 type FlexProps<T extends ElementType = "div"> = FlexPropsBase & {
@@ -34,51 +30,29 @@ const Flex = <T extends ElementType = "div">({
   justify = "flex-start",
   align = "stretch",
   wrap = "nowrap",
-  gap = "small",
+  gap = "md",
+  p = "none",
   className = "",
-  h,
-  w,
-  p,
-  pt,
-  pb,
-  pl,
-  pr,
+  fluid = false,
+  fluidH = false,
 }: FlexProps<T>) => {
   const Component = as || "div";
 
-  const gapValues = {
-    small: "8px",
-    medium: "16px",
-    large: "24px",
-  };
+  const classes = clsx(
+    styles["flex-component"],
+    styles[`flex-direction-${direction}`],
+    styles[`justify-${justify}`],
+    styles[`align-${align}`],
+    styles[`wrap-${wrap}`],
+    styles[`gap-${gap}`],
+    styles[`padding-${p}`],
+    fluid && styles.fluid,
+    fluidH && styles.fluidH,
 
-  const calculatedGap =
-    gap in gapValues ? gapValues[gap as keyof typeof gapValues] : gap;
-
-  return (
-    <>
-      <Component className={`flex-component ${className}`}>
-        {children}
-      </Component>
-      <style jsx>{`
-        .flex-component {
-          align-items: ${align};
-          display: flex;
-          flex-direction: ${direction};
-          flex-wrap: ${wrap};
-          gap: ${calculatedGap};
-          height: ${h};
-          justify-content: ${justify};
-          padding: ${p};
-          padding-left: ${pl};
-          padding-right: ${pr};
-          padding-top: ${pt};
-          padding-bottom: ${pb};
-          width: ${w};
-        }
-      `}</style>
-    </>
+    className,
   );
+
+  return <Component className={classes}>{children}</Component>;
 };
 
 export default Flex;

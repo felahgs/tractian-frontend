@@ -1,0 +1,56 @@
+$gap-values: (
+  sm: 8px,
+  md: 12px,
+  lg: 16px,
+  xl: 24px
+);
+
+$padding-values: (
+  sm: 8px,
+  md: 12px,
+  lg: 16px,
+  xl: 24px
+);
+
+.flex-component {
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  
+  &.flex-direction-row { flex-direction: row; }
+  &.flex-direction-row-reverse { flex-direction: row-reverse; }
+  &.flex-direction-column { flex-direction: column; }
+  &.flex-direction-column-reverse { flex-direction: column-reverse; }
+  
+  &.justify-flex-start { justify-content: flex-start; }
+  &.justify-center { justify-content: center; }
+  &.justify-flex-end { justify-content: flex-end; }
+  &.justify-space-between { justify-content: space-between; }
+  &.justify-space-around { justify-content: space-around; }
+
+  &.align-flex-start { align-items: flex-start; }
+  &.align-center { align-items: center; }
+  &.align-flex-end { align-items: flex-end; }
+
+  &.wrap { flex-wrap: wrap; }
+  &.wrap-reverse { flex-wrap: wrap-reverse; }
+
+  &.gap-sm { gap: map-get($gap-values, sm); }
+  &.gap-md { gap: map-get($gap-values, md); }
+  &.gap-lg { gap: map-get($gap-values, lg); }
+  &.gap-xl { gap: map-get($gap-values, xl); }
+
+  &.padding-sm { padding: map-get($padding-values, sm); }
+  &.padding-md { padding: map-get($padding-values, md); }
+  &.padding-lg { padding: map-get($padding-values, lg); }
+  &.padding-xl { padding: map-get($padding-values, xl); }
+  
+  &.padding-top-sm { padding-top: 8px; }
+  &.padding-bottom-sm { padding-bottom: 8px; }
+
+  &.fluid { width: 100%; }
+  &.fluidH { height: 100%; }
+  
+}

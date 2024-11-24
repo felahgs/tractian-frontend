@@ -8,7 +8,7 @@ const meta = {
     justify: "flex-start",
     align: "flex-start",
     wrap: "nowrap",
-    gap: "small",
+    gap: "sm",
     style: {},
     children: (
       <>
@@ -18,27 +18,6 @@ const meta = {
         <p style={{ padding: "5px", backgroundColor: "lightsalmon" }}>Text 4</p>
       </>
     ),
-  },
-  argTypes: {
-    gap: {
-      options: ["small", "medium", "large"],
-      control: "text",
-    },
-    p: {
-      control: "text",
-    },
-    pr: {
-      control: "text",
-    },
-    pl: {
-      control: "text",
-    },
-    pt: {
-      control: "text",
-    },
-    pb: {
-      control: "text",
-    },
   },
 } satisfies Meta<typeof Flex>;
 
