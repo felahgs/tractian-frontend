@@ -1,0 +1,17 @@
+@use "../styles/colors.scss";
+
+.section {
+  height: 100%;
+}
+
+.icon {
+  color: colors.$button-primary
+}
+
+.assetInfo {
+  flex-grow: 0.65,
+}
+
+.assetTree {
+  flex-grow: 0.35,
+}

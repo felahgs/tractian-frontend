@@ -1,0 +1,40 @@
+
+@use "src/styles/mixins.scss";
+@use "src/styles/colors.scss";
+
+.container {
+    border: 1px solid colors.$shapes-border-card;
+    height: 100%;
+}
+
+.header {
+    box-sizing: border-box;
+    border-bottom: 1px solid colors.$shapes-border-card;
+    padding: 14px 16px;
+}
+
+.descriptionSection {
+    box-sizing: border-box;
+    border-bottom: 1px solid colors.$shapes-border-card;
+}
+
+.imageContainer {
+    border: 1px solid colors.$shapes-border-card;
+    border-radius: 4px;
+    height: 226px;
+    width: 336px;
+}
+
+.componentsSection {
+    > * {
+        flex: 1
+    }
+}
+
+.divider {
+    border-bottom: 2px solid colors.$shapes-border-card;
+    height: 2px;           
+    background-color: colors.$shapes-border-card;  
+    padding: 24px 0;          
+    width: 100%;           
+}

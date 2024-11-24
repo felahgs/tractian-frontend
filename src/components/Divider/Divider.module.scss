@@ -1,0 +1,13 @@
+@use "../../styles/colors.scss";
+
+.divider {
+  height: 2px;           
+  background-color: colors.$shapes-border-card;  
+  opacity: 30%;
+  width: 100%;     
+}
+
+.vertical {
+  height: 100%;     
+  width: 2px;           
+}

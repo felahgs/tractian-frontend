@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "@/styles/globals.scss";
 
-// import "./globals.scss";
 import Header from "@/components/Header/Header";
+
+import styles from "./layout.module.scss";
 
 export const metadata: Metadata = {
   title: "Tractian",
@@ -23,7 +25,7 @@ export default function RootLayout({
     <html lang="en" className={inter.className}>
       <body>
         <Header />
-        {children}
+        <main className={styles.main}>{children}</main>
       </body>
     </html>
   );
