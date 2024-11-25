@@ -1,7 +1,9 @@
 @use "../../../styles/colors.scss";
 
-.section {
+
+.container {
   height: 100%;
+  min-width: 475px;
 }
 
 .icon {
@@ -14,4 +16,8 @@
 
 .assetTree {
   flex-grow: 0.35,
+}
+
+.assetViewContent {
+  max-height: calc(100% - 45px);
 }

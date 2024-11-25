@@ -13,10 +13,10 @@ export type LocationData = {
 
 export type AssetData = {
   id: string;
-  lcationId: string;
+  locationId: string;
   name: string;
   parentId: string;
-  sensorType: string;
+  sensorType: "vibration" | "energy";
   status: string;
 };
 
@@ -25,24 +25,27 @@ export async function getCompanies(): Promise<CompanyData[]> {
     const response = await apiClient.get("/companies");
     return response.data;
   } catch (error) {
+    console.log("error", error);
     throw new Error("Failed to fetch companies", error as Error);
   }
 }
 
 export async function getLocations(id: string): Promise<LocationData[]> {
   try {
-    const response = await apiClient.get(`/company/${id}/locations`);
+    const response = await apiClient.get(`/companies/${id}/locations`);
     return response.data;
   } catch (error) {
+    console.log("error", error);
     throw new Error("Failed to fetch company locations", error as Error);
   }
 }
 
 export async function getAssets(id: string): Promise<AssetData[]> {
   try {
-    const response = await apiClient.get(`/company/${id}/assets`);
+    const response = await apiClient.get(`/companies/${id}/assets`);
     return response.data;
   } catch (error) {
+    console.log("error", error);
     throw new Error("Failed to fetch company assets", error as Error);
   }
 }

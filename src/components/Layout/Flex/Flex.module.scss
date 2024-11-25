@@ -23,11 +23,13 @@
   &.wrap { flex-wrap: wrap; }
   &.wrap-reverse { flex-wrap: wrap-reverse; }
 
+  &.gap-xs { gap: 4px; }
   &.gap-sm { gap: 8px; }
   &.gap-md { gap: 12px; }
   &.gap-lg { gap: 16px; }
   &.gap-xl { gap: 24px; }
 
+  &.padding-xs { padding: 4px; }
   &.padding-sm { padding: 8px; }
   &.padding-md { padding: 12px; }
   &.padding-lg { padding: 16px; }

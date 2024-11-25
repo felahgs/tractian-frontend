@@ -4,11 +4,15 @@ import styles from "./AssetsTreeView.module.scss";
 import Flex from "../Layout/Flex";
 import clsx from "clsx";
 
+import { LocationNode } from "@/lib/assetsTree";
+import AssetsTree from "./AssetsTree";
+
 interface AssetsTreeViewProps {
+  treeData: LocationNode[];
   className: string;
 }
 
-function AssetsTreeView({ className }: AssetsTreeViewProps) {
+function AssetsTreeView({ treeData, className }: AssetsTreeViewProps) {
   return (
     <Flex direction="column" className={clsx(styles.container, className)}>
       <div className={clsx(styles.inputContainer)}>
@@ -19,7 +23,7 @@ function AssetsTreeView({ className }: AssetsTreeViewProps) {
           id="search-asset"
         />
       </div>
-      <div>Asset tree</div>
+      <AssetsTree data={treeData} />
     </Flex>
   );
 }

@@ -1,70 +1,80 @@
 @use "../../styles/colors.scss";
 
 .button {
-    background-color: colors.$button-primary;
-    border: 1px solid colors.$button-primary;
-    border-radius: 4px;
-    color: colors.$neutral-white;
-    cursor: pointer;
-    font-family: "Inter", serif;
-    font-size: 12px;
-    font-weight: 600;
-    height: 32px;
-    padding: 8px 14px;
-    transition: background-color 0.4s ease, color 0.4s ease, fill 0.4s ease; 
-
-    path {
-        fill: colors.$neutral-white;
-    }
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Inter", serif;
+  font-size: 12px;
+  font-weight: 600;
+  height: 32px;
+  padding: 8px 14px;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    fill 0.4s ease;
 }
 
 .button:hover:not(.active):not(:active) {
-    filter: opacity(60%);
-  }
-  
-.button:active {
-    background-color: colors.$button-active;
-    border: 1px solid colors.$button-active;
-    color: colors.$neutral-white;
-
-    path {
-        fill: colors.$neutral-white;
-    }
-}
-
-.active {
-    background-color: colors.$button-active;
-    border: 1px solid colors.$button-active;
+  filter: opacity(60%);
 }
 
 .button:disabled {
-    background-color: colors.$disabled; 
-    border-color: colors.$disabled;
-    cursor: default;
-    filter: none; 
-    opacity: 0.6; 
-  }
-
-.conpact {
-    border-radius: 3px;
-    font-size: 10px;
-    height: 24px; 
-    padding: 5px 8px;
+  background-color: colors.$disabled;
+  border-color: colors.$disabled;
+  cursor: default;
+  filter: none;
+  opacity: 0.6;
 }
 
-.secondary {
-    background-color: colors.$button-secondary;
-    border: 1px solid colors.$shapes-border-card;
-    color: colors.$neutral-gray-600;
+.conpact {
+  border-radius: 3px;
+  font-size: 10px;
+  height: 24px;
+  padding: 5px 8px;
+}
 
-    path {
-        fill: colors.$button-active;
-    }
+.variant_primary {
+  background-color: colors.$button-primary;
+  border: 1px solid colors.$button-primary;
+  color: colors.$neutral-white;
+  path {
+    fill: colors.$neutral-white;
+  }
+}
+
+.variant_secondary {
+  background-color: colors.$button-secondary;
+  border: 1px solid colors.$shapes-border-card;
+  color: colors.$neutral-gray-600;
+
+  path {
+    fill: colors.$button-active;
+  }
+}
+
+.variant_primary.active, 
+.variant_secondary.active,
+.variant_primary:active, 
+.variant_secondary:active {
+  background-color: colors.$button-active;
+  border: 1px solid colors.$button-active;
+  color: colors.$neutral-white;
+
+  path {
+    fill: colors.$neutral-white;
+  }
+}
+
+.variant_text {
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .content {
-    align-content: center;
-    align-items: center;
-    display: flex;
-    gap: 8px;
+  align-content: center;
+  align-items: center;
+  display: flex;
+  gap: 8px;
 }

@@ -1,31 +1,63 @@
-
 @use "src/styles/colors.scss";
 
 .container {
-    border: 1px solid colors.$shapes-border-card;
-    border-radius: 2px;
-    height: 100%;
-    // max-width: 500px;
+  border: 1px solid colors.$shapes-border-card;
+  border-radius: 2px;
+  height: 100%;
+}
+
+.nodeTree {
+  height: calc(100%);
+  overflow-y: auto;
+  scrollbar-gutter: stable both-edges;
 }
 
 .inputContainer {
+  box-sizing: border-box;
+  border-bottom: 1px solid colors.$shapes-border-card;
+  padding: 8px;
+  width: 100%;
+
+  input {
     box-sizing: border-box;
-    border-bottom: 1px solid colors.$shapes-border-card;
-    padding: 8px;
+    border: none;
+    height: 22px;
     width: 100%;
-
-    input {
-        box-sizing: border-box;
-        border: none;
-        height: 22px;
-        width: 100%;
-        &::placeholder {
-            color: colors.$writing-placeholder
-        }
-
-
-        &:focus-visible {
-            outline: 2px solid #005fcc;
-        }
+    &::placeholder {
+      color: colors.$writing-placeholder;
     }
+
+    &:focus-visible {
+      outline: 1px solid colors.$accent;
+      opacity: 40%;
+      border-radius: 2px;
+    }
+  }
+}
+
+.iconContainer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  
+  height: 22px;
+  width: 22px;
+}
+
+.statusIcon {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.operating {
+  path {
+    fill: colors.$success !important;
+  }
+}
+
+.alert {
+  path {
+    fill: colors.$danger !important;
+  }
 }

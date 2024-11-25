@@ -10,7 +10,7 @@ interface NotFoundProps {
 const NotFound = ({ message }: NotFoundProps) => {
   return (
     <Flex fluidH direction="column" align="center" className={styles.container}>
-      <Text as="h1" className={styles.title}>
+      <Text as="h2" className={styles.title}>
         404 - Page Not Found
       </Text>
       <Text type="caption" className={styles.message}>

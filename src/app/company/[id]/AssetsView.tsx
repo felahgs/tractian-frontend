@@ -6,22 +6,32 @@ import Flex from "@/components/Layout/Flex";
 import Text from "@/components/Text";
 import Button from "@/components/Button/Button";
 
-import { CompanyData } from "@/services/companies";
+import { AssetData, CompanyData, LocationData } from "@/services/companies";
 
 import ThunderboldSVG from "@/icons/thunderbolt.svg";
 import CritcalSVG from "@/icons/exclamation_circle.svg.svg";
 
 import styles from "./page.module.scss";
+import { buildTree } from "@/lib/assetsTree/assetsTree";
 
 interface AssetsViewProps {
   company: CompanyData;
+  locations: LocationData[];
+  assets: AssetData[];
 }
 
-export default function AssetsView({ company }: AssetsViewProps) {
+export default function AssetsView({
+  company,
+  locations,
+  assets,
+}: AssetsViewProps) {
   const { name: companyName } = company;
 
+  const assetsTree = buildTree(locations, assets);
+  console.log("assetsTree", assetsTree);
+
   return (
-    <Flex as="section" direction="column" className={styles.section}>
+    <Flex as="section" direction="column" className={styles.container}>
       <Flex as="header" justify="space-between">
         <Flex align="center">
           <Text type="title">Ativos</Text>
@@ -39,8 +49,8 @@ export default function AssetsView({ company }: AssetsViewProps) {
         </Flex>
       </Flex>
 
-      <Flex justify="space-between" fluidH>
-        <AssetsTree className={styles.assetTree} />
+      <Flex className={styles.assetViewContent} justify="space-between" fluidH>
+        <AssetsTree treeData={assetsTree} className={styles.assetTree} />
         <AssetInfo className={styles.assetInfo} />
       </Flex>
     </Flex>
