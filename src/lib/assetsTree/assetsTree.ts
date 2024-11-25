@@ -1,36 +1,30 @@
-export function buildTree(locations, assets) {
+import { LocationData, AssetData } from "@/services/companies";
+import { TreeLeaf, TreeNode } from "./types";
+
+export function buildTree(locations: LocationData[], assets: AssetData[]) {
   const map = new Map();
-  const root = [];
+  const treeList: Array<TreeNode | TreeLeaf> = [];
 
-  addLocationsToMap(map, locations);
-  addAssetsToMapWith(map, assets);
+  createLocationNodesMap(map, locations);
+  createAssetsNodesMap(map, assets);
+  buildTreesFromMap(treeList, map, locations, assets);
 
-  [...locations, ...assets].forEach((item) => {
-    const node = map.get(item.id);
-
-    if (item.locationId) {
-      addNodeToParent(map, node, item.locationId);
-    }
-
-    if (item.parentId) {
-      addNodeToParent(map, node, item.parentId);
-    }
-
-    if (!item.locationId && !item.parentId) {
-      root.push(node);
-    }
-  });
-
-  return root;
+  return treeList;
 }
 
-function addLocationsToMap(map, locations) {
+function createLocationNodesMap(
+  map: Map<string, TreeLeaf | TreeNode>,
+  locations: LocationData[],
+) {
   locations.forEach((item) => {
     map.set(item.id, { ...item, type: "location", children: [] });
   });
 }
 
-function addAssetsToMapWith(map, assets) {
+function createAssetsNodesMap(
+  map: Map<string, TreeLeaf | TreeNode>,
+  assets: AssetData[],
+) {
   assets.forEach((item) => {
     map.set(
       item.id,
@@ -41,8 +35,47 @@ function addAssetsToMapWith(map, assets) {
   });
 }
 
-function addNodeToParent(map, node, parentId) {
-  const parent = map.get(parentId);
+function buildTreesFromMap(
+  treeList: Array<TreeLeaf | TreeNode>,
+  map: Map<string, TreeLeaf | TreeNode>,
+  locations: LocationData[],
+  assets: AssetData[],
+) {
+  locations.forEach((item) => {
+    const node = map.get(item.id);
+    if (!node) return;
+
+    if (item.parentId) {
+      return addNodeToParent(map, node, item.parentId);
+    }
+
+    return treeList.push(node);
+  });
+
+  assets.forEach((item) => {
+    const node = map.get(item.id);
+    if (!node) return;
+
+    if (item.locationId) {
+      return addNodeToParent(map, node, item.locationId);
+    }
+
+    if (item.parentId) {
+      return addNodeToParent(map, node, item.parentId);
+    }
+
+    return treeList.push(node);
+  });
+}
+
+function addNodeToParent(
+  map: Map<string, TreeLeaf | TreeNode>,
+  node: TreeLeaf | TreeNode,
+  parentId: string,
+) {
+  const parent = map.get(parentId) as TreeNode;
+  if (!parent) return;
+
   if (parent) {
     parent.children.push(node);
   }

@@ -4,11 +4,11 @@ import styles from "./AssetsTreeView.module.scss";
 import Flex from "../Layout/Flex";
 import clsx from "clsx";
 
-import { LocationNode } from "@/lib/assetsTree";
+import { TreeLeaf, TreeNode } from "@/lib/assetsTree";
 import AssetsTree from "./AssetsTree";
 
 interface AssetsTreeViewProps {
-  treeData: LocationNode[];
+  treeData: Array<TreeNode | TreeLeaf>;
   className: string;
 }
 

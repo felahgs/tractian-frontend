@@ -35,7 +35,7 @@ function AssetTreeLeaf({ data, ...rest }: AssetTreeLeafProps) {
   const handleClick = () => console.log("selected asset", data);
 
   return (
-    <Flex fluid {...rest}>
+    <Flex {...rest}>
       <Button onClick={handleClick} variant="text">
         <Flex align="center" gap="sm">
           <Flex gap="none">
