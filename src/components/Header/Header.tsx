@@ -1,9 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  useFloating,
+  useInteractions,
+  useListNavigation,
+} from "@floating-ui/react";
 
 import Button from "@/components/Button";
 import Flex from "@/components/Layout/Flex";
@@ -19,6 +24,32 @@ interface HeaderProps {
 }
 
 function Header({ companies = [] }: HeaderProps) {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+
+  const { refs, context } = useFloating({
+    open: true,
+  });
+
+  const listRef = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  const handleNavigate = (index: number | null) => {
+    if (index !== null) {
+      setActiveIndex(index);
+    }
+  };
+
+  const listNavigation = useListNavigation(context, {
+    listRef,
+    activeIndex,
+    orientation: "both",
+    loop: true,
+    onNavigate: handleNavigate,
+  });
+
+  const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
+    [listNavigation],
+  );
+
   const pathname = usePathname();
 
   return (
@@ -29,12 +60,20 @@ function Header({ companies = [] }: HeaderProps) {
       className={styles.container}
     >
       <Image height={15} width={103} src={"/logo.png"} alt="tractian logo" />
-      <Flex>
-        {companies.map((company) => (
-          <Link key={company.id} href={`/company/${company.id}`}>
+      <div ref={refs.setReference} {...getReferenceProps()} />
+      <Flex ref={refs.setFloating} {...getFloatingProps()}>
+        {companies.map((company, index) => (
+          <Link
+            tabIndex={activeIndex === index ? 0 : -1}
+            ref={(node) => {
+              listRef.current[index] = node;
+            }}
+            {...getItemProps()}
+            key={company.id}
+            href={`/company/${company.id}`}
+          >
             <Button
-              // onClick={handleClick(company.id)}
-
+              tabIndex={-1}
               active={pathname.includes(company.id)}
               conpact
             >
