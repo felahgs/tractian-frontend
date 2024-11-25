@@ -1,14 +1,10 @@
 import React, { HtmlHTMLAttributes, useState } from "react";
-// import clsx from "clsx";
 
 import { TreeNode } from "@/lib/assetsTree";
-// import { ComponentNode, TreeNode } from "@/lib/assetsTree";
 
 import LocationIcon from "@/icons/location.svg";
 import AssetIcon from "@/icons/asset.svg";
 import ComponentIcon from "@/icons/component.svg";
-// import DotIcon from "@/icons/dot.svg";
-// import BoltIcon from "@/icons/bolt.svg";
 import ArrowDown from "@/icons/arrow_down.svg";
 import ArrowRight from "@/icons/arrow_right.svg";
 
@@ -31,16 +27,8 @@ const assetIcon = {
 function AssetTreeNode({ data, ...rest }: AssetTreeNodeProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { name, type } = data;
-  // const { status, sensorType } = data as ComponentNode;
-
-  // const isComponent = type === "component";
-  // const isEnergy = sensorType === "energy";
-  // const hasChildren = !isComponent && data.children.length > 0;
   const hasChildren = data.children.length > 0;
-
   const Chevron = () => (isOpen ? <ArrowDown /> : <ArrowRight />);
-  // const StatusIcon = () => (isEnergy ? <BoltIcon /> : <DotIcon />);
-
   const handleClick = () => setIsOpen(!isOpen);
 
   return (
@@ -65,11 +53,6 @@ function AssetTreeNode({ data, ...rest }: AssetTreeNodeProps) {
             )}
           </Flex>
           {name}
-          {/* {isComponent && (
-            <span className={clsx(styles[status])}>
-              <StatusIcon />
-            </span>
-          )} */}
         </Flex>
       </Button>
       {isOpen &&
