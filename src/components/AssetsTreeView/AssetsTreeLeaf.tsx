@@ -59,7 +59,7 @@ const AssetTreeLeaf = forwardRef<HTMLDivElement, AssetTreeLeafProps>(
               </span>
             </Flex>
             {name}
-            <span className={clsx(styles.statusIcon, styles[status])}>
+            <span className={clsx(styles.statusIcon, status && styles[status])}>
               <StatusIcon />
             </span>
           </Flex>

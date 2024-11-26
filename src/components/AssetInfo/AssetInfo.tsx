@@ -32,8 +32,6 @@ function AssetInfo({ className }: AssetInfoProps) {
   const isEnergy = sensorType === "energy";
   const StatusIcon = () => (isEnergy ? <BoltIcon /> : <DotIcon />);
 
-  console.log("selected asset: ", selectedAsset);
-
   if (!selectedAsset)
     return (
       <section className={clsx(styles.container, className)}>
@@ -49,7 +47,7 @@ function AssetInfo({ className }: AssetInfoProps) {
     <section className={clsx(styles.container, className)}>
       <Flex as="header" align="center" className={styles.header}>
         <Text type="title">{name}</Text>
-        <span className={styles[status]}>
+        <span className={clsx(status && styles[status])}>
           <StatusIcon />
         </span>
       </Flex>
