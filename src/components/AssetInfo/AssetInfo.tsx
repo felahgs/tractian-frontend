@@ -39,7 +39,7 @@ function AssetInfo({ className }: AssetInfoProps) {
       <section className={clsx(styles.container, className)}>
         <Flex fluidH align="center" justify="center">
           <Text type="caption" color="muted">
-            Select an asset to check its details.
+            Selecione um ativo para ver seus detalhes.
           </Text>
         </Flex>
       </section>

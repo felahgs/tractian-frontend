@@ -30,6 +30,7 @@
     box-sizing: border-box;
     border: none;
     height: 22px;
+    user-select: all;
     width: 100%;
     &::placeholder {
       color: colors.$writing-placeholder;

@@ -14,8 +14,13 @@ import CritcalSVG from "@/icons/exclamation_circle.svg.svg";
 import styles from "./page.module.scss";
 import { buildTree } from "@/lib/assetsTree/assetsTree";
 import { AssetTreeContext } from "@/contexts/AssetTreeContext";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { TreeLeaf } from "@/lib/assetsTree";
+import { initialState, treeFilterReducer } from "../../reducer/reducer";
+import {
+  TOGGLE_CRITICAL_FILTER,
+  TOGGLE_ENERGY_FILTER,
+} from "@/app/reducer/action";
 
 interface AssetsViewProps {
   company: CompanyData;
@@ -30,13 +35,28 @@ export default function AssetsView({
 }: AssetsViewProps) {
   const { name: companyName } = company;
   const [selectedAsset, setSelectedAsset] = useState<TreeLeaf | null>(null);
-
+  const [filterState, dispatchFilterState] = useReducer(
+    treeFilterReducer,
+    initialState,
+  );
+  const { energyFilterOn, criticalFilterOn } = filterState;
   const assetsTree = buildTree(locations, assets);
 
   const handleSetActiveAsset = (newAsset: TreeLeaf) => {
     setSelectedAsset(newAsset);
   };
 
+  const handleEnergyFilterToggle = () => {
+    dispatchFilterState({ type: TOGGLE_ENERGY_FILTER });
+  };
+
+  const handleCriticalFilterToggle = () => {
+    dispatchFilterState({ type: TOGGLE_CRITICAL_FILTER });
+  };
+
+  console.log("assetsTree", assetsTree);
+
+  debugger;
   return (
     <Flex as="section" direction="column" className={styles.container}>
       <Flex as="header" justify="space-between">
@@ -47,10 +67,20 @@ export default function AssetsView({
           </Text>
         </Flex>
         <Flex gap="sm">
-          <Button icon={<ThunderboldSVG />} variant="secondary">
+          <Button
+            active={energyFilterOn}
+            icon={<ThunderboldSVG />}
+            variant="secondary"
+            onClick={handleEnergyFilterToggle}
+          >
             Sensor de Energia
           </Button>
-          <Button icon={<CritcalSVG />} variant="secondary">
+          <Button
+            active={criticalFilterOn}
+            icon={<CritcalSVG />}
+            variant="secondary"
+            onClick={handleCriticalFilterToggle}
+          >
             Crítico
           </Button>
         </Flex>
@@ -58,7 +88,12 @@ export default function AssetsView({
 
       <Flex className={styles.assetViewContent} justify="space-between" fluidH>
         <AssetTreeContext.Provider
-          value={{ selectedAsset, handleSetActiveAsset }}
+          value={{
+            selectedAsset,
+            filterState,
+            handleSetActiveAsset,
+            dispatchFilterState,
+          }}
         >
           <AssetsTree treeData={assetsTree} className={styles.assetTree} />
           <AssetInfo className={styles.assetInfo} />
