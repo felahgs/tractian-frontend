@@ -22,6 +22,6 @@ export default async function AssetsPage({ params }: AssetsPageProps) {
       assets={assets}
     />
   ) : (
-    <NotFound message="No company was found with the provided ID" />
+    <NotFound message="Não uma empresa foi encontrada a partir do id fornecido." />
   );
 }

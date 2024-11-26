@@ -14,7 +14,7 @@ const NotFound = ({ message }: NotFoundProps) => {
         404 - Page Not Found
       </Text>
       <Text type="caption" className={styles.message}>
-        {message || "The page you're looking for does not exist."}
+        {message || "O endereço que você está tentando acessar não existe."}
       </Text>
     </Flex>
   );

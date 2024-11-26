@@ -17,8 +17,8 @@ export default function Error({
 
   return (
     <Flex direction="column" align="center">
-      <h2>Something went wrong while loading the page!</h2>
-      <Button onClick={() => reset()}>Reload the page</Button>
+      <h2>Algum problema ocorreu ao carregar a página. Tente novamente.</h2>
+      <Button onClick={() => reset()}>Recarregar página</Button>
     </Flex>
   );
 }
