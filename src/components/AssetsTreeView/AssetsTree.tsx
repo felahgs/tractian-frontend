@@ -1,11 +1,12 @@
 import React from "react";
 
 import Flex from "@/components/Layout/Flex";
+import { TreeLeaf, TreeNode } from "@/lib/assetsTree";
+
 import AssetTreeNode from "./AssetsTreeNode";
+import AssetTreeLeaf from "./AssetsTreeLeaf";
 
 import styles from "./AssetsTreeView.module.scss";
-import { TreeLeaf, TreeNode } from "@/lib/assetsTree";
-import AssetTreeLeaf from "./AssetsTreeLeaf";
 
 interface AssetsTreeProps {
   data: Array<TreeNode | TreeLeaf>;

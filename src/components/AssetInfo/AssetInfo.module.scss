@@ -19,7 +19,9 @@
 }
 
 .imageContainer {
-    border: 1px solid colors.$shapes-border-card;
+    border: 1px dashed colors.$accent;
+    background-color: colors.$blue-50;
+    color: colors.$accent;
     border-radius: 4px;
     height: 226px;
     width: 336px;
@@ -37,4 +39,16 @@
     background-color: colors.$shapes-border-card;  
     padding: 24px 0;          
     width: 100%;           
+}
+
+.operating {
+  path {
+    fill: colors.$success !important;
+  }
+}
+
+.alert {
+  path {
+    fill: colors.$danger !important;
+  }
 }

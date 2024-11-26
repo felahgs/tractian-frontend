@@ -11,8 +11,9 @@ import ArrowRight from "@/icons/arrow_right.svg";
 import Flex from "@/components/Layout/Flex";
 import Button from "@/components/Button";
 
-import styles from "./AssetsTreeView.module.scss";
 import AssetTreeLeaf from "./AssetsTreeLeaf";
+
+import styles from "./AssetsTreeView.module.scss";
 
 interface AssetTreeNodeProps extends HtmlHTMLAttributes<HTMLDivElement> {
   data: TreeNode;
@@ -29,8 +30,8 @@ const AssetTreeNode = forwardRef<HTMLDivElement, AssetTreeNodeProps>(
     const [isOpen, setIsOpen] = useState(false);
     const { name, type } = data;
     const hasChildren = data.children.length > 0;
-    const Chevron = () => (isOpen ? <ArrowDown /> : <ArrowRight />);
 
+    const Chevron = () => (isOpen ? <ArrowDown /> : <ArrowRight />);
     const handleClick = () => setIsOpen(!isOpen);
 
     return (

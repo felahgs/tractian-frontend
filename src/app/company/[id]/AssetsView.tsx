@@ -13,6 +13,9 @@ import CritcalSVG from "@/icons/exclamation_circle.svg.svg";
 
 import styles from "./page.module.scss";
 import { buildTree } from "@/lib/assetsTree/assetsTree";
+import { AssetTreeContext } from "@/contexts/AssetTreeContext";
+import { useState } from "react";
+import { TreeLeaf } from "@/lib/assetsTree";
 
 interface AssetsViewProps {
   company: CompanyData;
@@ -26,8 +29,13 @@ export default function AssetsView({
   assets,
 }: AssetsViewProps) {
   const { name: companyName } = company;
+  const [selectedAsset, setSelectedAsset] = useState<TreeLeaf | null>(null);
 
   const assetsTree = buildTree(locations, assets);
+
+  const handleSetActiveAsset = (newAsset: TreeLeaf) => {
+    setSelectedAsset(newAsset);
+  };
 
   return (
     <Flex as="section" direction="column" className={styles.container}>
@@ -49,8 +57,12 @@ export default function AssetsView({
       </Flex>
 
       <Flex className={styles.assetViewContent} justify="space-between" fluidH>
-        <AssetsTree treeData={assetsTree} className={styles.assetTree} />
-        <AssetInfo className={styles.assetInfo} />
+        <AssetTreeContext.Provider
+          value={{ selectedAsset, handleSetActiveAsset }}
+        >
+          <AssetsTree treeData={assetsTree} className={styles.assetTree} />
+          <AssetInfo className={styles.assetInfo} />
+        </AssetTreeContext.Provider>
       </Flex>
     </Flex>
   );

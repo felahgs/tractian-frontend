@@ -12,6 +12,14 @@
   scrollbar-gutter: stable both-edges;
 }
 
+.nodeSelected {
+  background-color: colors.$button-active;
+  color: colors.$neutral-white;
+  path {
+    fill: colors.$neutral-white;
+  }
+}
+
 .inputContainer {
   box-sizing: border-box;
   border-bottom: 1px solid colors.$shapes-border-card;
@@ -39,7 +47,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  
+
   height: 22px;
   width: 22px;
 }

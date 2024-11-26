@@ -18,6 +18,8 @@ export type AssetData = {
   parentId: string;
   sensorType: "vibration" | "energy";
   status: string;
+  gatewayId: string;
+  sensorId: string;
 };
 
 export async function getCompanies(): Promise<CompanyData[]> {

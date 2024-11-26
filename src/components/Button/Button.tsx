@@ -6,6 +6,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
   variant?: "primary" | "secondary" | "text";
   icon?: ReactNode;
+  fluid?: boolean;
   conpact?: boolean;
   active?: boolean;
 }
@@ -16,6 +17,8 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   children,
   active,
+  fluid,
+  className,
   ...rest
 }) => {
   return (
@@ -23,8 +26,10 @@ const Button: React.FC<ButtonProps> = ({
       className={clsx(
         styles.button,
         styles[`variant_${variant}`],
+        fluid && styles.fluid,
         conpact && styles.conpact,
         active && styles.active,
+        className,
       )}
       {...rest}
     >

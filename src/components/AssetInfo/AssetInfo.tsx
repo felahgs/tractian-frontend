@@ -1,28 +1,57 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import clsx from "clsx";
 
 import Flex from "@/components/Layout/Flex";
 import Text from "@/components/Text";
-
-import styles from "./AssetInfo.module.scss";
-import Divider from "../Divider";
 import Avatar from "@/components/Avatar";
 
-import SVG from "@/icons/globe.svg";
+import DotIcon from "@/icons/dot.svg";
+import BoltIcon from "@/icons/bolt.svg";
+import InboxIcon from "@/icons/inbox.svg";
+import SensorIcon from "@/icons/sensor.svg";
+import ReceptorIcon from "@/icons/md_outliner_router.svg";
+
+import { AssetTreeContext } from "@/contexts/AssetTreeContext";
+import { ComponentNode } from "@/lib/assetsTree";
+
+import Divider from "../Divider";
+
+import styles from "./AssetInfo.module.scss";
 
 interface AssetInfoProps {
   className: string;
 }
 
 function AssetInfo({ className }: AssetInfoProps) {
+  const { selectedAsset } = useContext(AssetTreeContext);
+  const { name, gatewayId, sensorId, status, sensorType } =
+    selectedAsset || ({} as ComponentNode);
+
+  const isEnergy = sensorType === "energy";
+  const StatusIcon = () => (isEnergy ? <BoltIcon /> : <DotIcon />);
+
+  console.log("selected asset: ", selectedAsset);
+
+  if (!selectedAsset)
+    return (
+      <section className={clsx(styles.container, className)}>
+        <Flex fluidH align="center" justify="center">
+          <Text type="caption" color="muted">
+            Select an asset to check its details.
+          </Text>
+        </Flex>
+      </section>
+    );
+
   return (
     <section className={clsx(styles.container, className)}>
       <Flex as="header" align="center" className={styles.header}>
-        <Text type="title">MOTORS H12D - Stage 3</Text>
-        <Text>icon</Text>
-        <SVG width="12px" height="12px" />
+        <Text type="title">{name}</Text>
+        <span className={styles[status]}>
+          <StatusIcon />
+        </span>
       </Flex>
 
       <div className={styles.content}>
@@ -33,14 +62,22 @@ function AssetInfo({ className }: AssetInfoProps) {
           p="xl"
         >
           <Flex
+            direction="column"
             justify="center"
             align="center"
+            gap="none"
             className={styles.imageContainer}
           >
-            {/* <Image width={336} height={226} src="" alt="asset-image" /> */}
+            <InboxIcon width={"42px"} height={"42px"} />
+            <Text size="md">Adicionar imagem do Ativo</Text>
           </Flex>
 
-          <Flex direction="column" justify="center" gap="none" fluid>
+          <Flex
+            style={{ flex: 1 }}
+            direction="column"
+            justify="center"
+            gap="none"
+          >
             <Flex direction="column" gap="none">
               <Text type="title" size="md">
                 Tipo de Equipamento
@@ -55,8 +92,17 @@ function AssetInfo({ className }: AssetInfoProps) {
                 Responsáveis
               </Text>
               <Flex>
-                <Avatar size={24} initials="E" />
-                <Text type="caption">Elétrica</Text>
+                {isEnergy ? (
+                  <>
+                    <Avatar size={24} initials="E" />
+                    <Text type="caption">Elétrica</Text>
+                  </>
+                ) : (
+                  <>
+                    <Avatar size={24} initials="M" />
+                    <Text type="caption">Mecânica</Text>
+                  </>
+                )}
               </Flex>
             </Flex>
           </Flex>
@@ -67,13 +113,20 @@ function AssetInfo({ className }: AssetInfoProps) {
             <Text type="title" size="md">
               Sensor
             </Text>
-            <Text type="caption">(icon)TFV655</Text>
+            <Flex as="span" gap="xs">
+              <SensorIcon />
+              <Text type="caption">{sensorId}</Text>
+            </Flex>
           </Flex>
           <Flex direction="column" gap="sm">
             <Text type="title" size="md">
               Receptor
             </Text>
-            <Text type="caption">(icon)YTF265</Text>
+
+            <Flex as="span" gap="xs">
+              <ReceptorIcon />
+              <Text type="caption">{gatewayId}</Text>
+            </Flex>
           </Flex>
         </Flex>
       </div>

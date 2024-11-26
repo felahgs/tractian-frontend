@@ -4,8 +4,9 @@ import styles from "./AssetsTreeView.module.scss";
 import Flex from "../Layout/Flex";
 import clsx from "clsx";
 
-import { TreeLeaf, TreeNode } from "@/lib/assetsTree";
 import AssetsTree from "./AssetsTree";
+
+import { TreeLeaf, TreeNode } from "@/lib/assetsTree";
 
 interface AssetsTreeViewProps {
   treeData: Array<TreeNode | TreeLeaf>;
@@ -23,6 +24,7 @@ function AssetsTreeView({ treeData, className }: AssetsTreeViewProps) {
           id="search-asset"
         />
       </div>
+
       <AssetsTree data={treeData} />
     </Flex>
   );
