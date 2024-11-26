@@ -37,8 +37,8 @@ function AssetInfo({ className }: AssetInfoProps) {
   if (!selectedAsset)
     return (
       <section className={clsx(styles.container, className)}>
-        <Flex fluidH align="center" justify="center">
-          <Text type="caption" color="muted">
+        <Flex p="md" fluidH align="center" justify="center">
+          <Text align="center" type="caption" color="muted">
             Selecione um ativo para ver seus detalhes.
           </Text>
         </Flex>

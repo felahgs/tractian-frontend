@@ -28,15 +28,15 @@ const assetIcon = {
 const AssetTreeNode = forwardRef<HTMLDivElement, AssetTreeNodeProps>(
   ({ data, ...rest }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
+
     const { name, type } = data;
     const hasChildren = data.children.length > 0;
-
     const Chevron = () => (isOpen ? <ArrowDown /> : <ArrowRight />);
     const handleClick = () => setIsOpen(!isOpen);
 
     return (
       <Flex fluid direction="column" gap="none" ref={ref} {...rest}>
-        <Button onClick={handleClick} variant="text">
+        <Button variant="text" onClick={handleClick}>
           <Flex align="center" gap="sm">
             <Flex gap="none">
               {hasChildren ? (

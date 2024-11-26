@@ -12,6 +12,55 @@ export function buildTree(locations: LocationData[], assets: AssetData[]) {
   return treeList;
 }
 
+export function searchTree(
+  tree: TreeNode | TreeLeaf, // Single tree node (or leaf)
+  callback: (node: TreeLeaf | TreeNode) => boolean,
+): Array<TreeLeaf | TreeNode> {
+  const results: Array<TreeLeaf | TreeNode> = [];
+
+  const searchRecursively = (node: TreeNode | TreeLeaf) => {
+    if (callback(node)) {
+      results.push(node);
+    }
+
+    if ((node as TreeNode).children) {
+      (node as TreeNode).children.forEach((child) => {
+        searchRecursively(child);
+      });
+    }
+  };
+
+  searchRecursively(tree);
+
+  return results;
+}
+
+export function findNode(
+  tree: TreeNode | TreeLeaf, // Single tree node (or leaf)
+  callback: (node: TreeLeaf | TreeNode) => boolean,
+): TreeLeaf | TreeNode | null {
+  let result: TreeLeaf | TreeNode | null = null;
+
+  const searchRecursively = (node: TreeNode | TreeLeaf) => {
+    if (callback(node)) {
+      result = node;
+      return;
+    }
+
+    if ((node as TreeNode).children) {
+      (node as TreeNode).children.forEach((child) => {
+        if (!result) {
+          searchRecursively(child);
+        }
+      });
+    }
+  };
+
+  searchRecursively(tree);
+
+  return result;
+}
+
 function createLocationNodesMap(
   map: Map<string, TreeLeaf | TreeNode>,
   locations: LocationData[],
@@ -79,4 +128,36 @@ function addNodeToParent(
   if (parent) {
     parent.children.push(node);
   }
+}
+
+export function filterTreeList(
+  treeList: Array<TreeLeaf | TreeNode>,
+  callback: (node: TreeLeaf | TreeNode) => boolean,
+): Array<TreeLeaf | TreeNode> {
+  const filteredList: Array<TreeLeaf | TreeNode> = [];
+
+  function filterTreeRecursive(node: TreeLeaf | TreeNode) {
+    const hasChildren = node.type !== "component" && node.children.length > 0;
+
+    const updatedNode = { ...node };
+
+    if (hasChildren) {
+      (updatedNode as TreeNode).children = [];
+      node.children.forEach((child) => {
+        if (findNode(child, callback)) {
+          (updatedNode as TreeNode).children.push(filterTreeRecursive(child));
+        }
+      });
+    }
+
+    return updatedNode;
+  }
+
+  treeList.forEach((tree) => {
+    if (findNode(tree, callback)) {
+      filteredList.push(filterTreeRecursive(tree));
+    }
+  });
+
+  return filteredList;
 }
