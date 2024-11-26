@@ -12,29 +12,6 @@ export function buildTree(locations: LocationData[], assets: AssetData[]) {
   return treeList;
 }
 
-export function searchTree(
-  tree: TreeNode | TreeLeaf, // Single tree node (or leaf)
-  callback: (node: TreeLeaf | TreeNode) => boolean,
-): Array<TreeLeaf | TreeNode> {
-  const results: Array<TreeLeaf | TreeNode> = [];
-
-  const searchRecursively = (node: TreeNode | TreeLeaf) => {
-    if (callback(node)) {
-      results.push(node);
-    }
-
-    if ((node as TreeNode).children) {
-      (node as TreeNode).children.forEach((child) => {
-        searchRecursively(child);
-      });
-    }
-  };
-
-  searchRecursively(tree);
-
-  return results;
-}
-
 export function findNode(
   tree: TreeNode | TreeLeaf, // Single tree node (or leaf)
   callback: (node: TreeLeaf | TreeNode) => boolean,
@@ -91,9 +68,7 @@ function buildTreesFromMap(
   assets: AssetData[],
 ) {
   locations.forEach((item) => {
-    const node = map.get(item.id);
-    if (!node) return;
-
+    const node = map.get(item.id) as TreeLeaf | TreeNode;
     if (item.parentId) {
       return addNodeToParent(map, node, item.parentId);
     }
@@ -102,9 +77,7 @@ function buildTreesFromMap(
   });
 
   assets.forEach((item) => {
-    const node = map.get(item.id);
-    if (!node) return;
-
+    const node = map.get(item.id) as TreeLeaf | TreeNode;
     if (item.locationId) {
       return addNodeToParent(map, node, item.locationId);
     }
@@ -123,7 +96,6 @@ function addNodeToParent(
   parentId: string,
 ) {
   const parent = map.get(parentId) as TreeNode;
-  if (!parent) return;
 
   if (parent) {
     parent.children.push(node);

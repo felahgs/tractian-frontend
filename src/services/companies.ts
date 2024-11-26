@@ -1,5 +1,9 @@
 import apiClient from "@/services/api";
 
+export type AssetType = "location" | "asset" | "component";
+export type SensorType = "vibration" | "energy";
+export type StatusType = "operating" | "alert";
+
 export type CompanyData = {
   name: string;
   id: string;
@@ -8,18 +12,18 @@ export type CompanyData = {
 export type LocationData = {
   id: string;
   name: string;
-  parentId: string;
+  parentId: string | null;
 };
 
 export type AssetData = {
   id: string;
-  locationId: string;
+  locationId: string | null;
   name: string;
-  parentId: string;
-  sensorType: "vibration" | "energy";
-  status: string;
-  gatewayId: string;
-  sensorId: string;
+  parentId: string | null;
+  sensorType: SensorType | null;
+  status: StatusType | null;
+  gatewayId: string | null;
+  sensorId: string | null;
 };
 
 export async function getCompanies(): Promise<CompanyData[]> {
