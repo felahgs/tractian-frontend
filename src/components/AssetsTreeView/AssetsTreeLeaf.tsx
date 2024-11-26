@@ -1,4 +1,4 @@
-import React, { HtmlHTMLAttributes } from "react";
+import React, { HtmlHTMLAttributes, forwardRef } from "react";
 import clsx from "clsx";
 
 import { ComponentNode } from "@/lib/assetsTree";
@@ -24,36 +24,40 @@ const assetIcon = {
   component: <ComponentIcon />,
 };
 
-function AssetTreeLeaf({ data, ...rest }: AssetTreeLeafProps) {
-  const { name, type } = data;
-  const { status, sensorType } = data;
+const AssetTreeLeaf = forwardRef<HTMLDivElement, AssetTreeLeafProps>(
+  ({ data, ...rest }, ref) => {
+    const { name, type } = data;
+    const { status, sensorType } = data;
 
-  const isEnergy = sensorType === "energy";
+    const isEnergy = sensorType === "energy";
 
-  const StatusIcon = () => (isEnergy ? <BoltIcon /> : <DotIcon />);
+    const StatusIcon = () => (isEnergy ? <BoltIcon /> : <DotIcon />);
 
-  const handleClick = () => console.log("selected asset", data);
+    const handleClick = () => console.log("selected asset", data);
 
-  return (
-    <Flex {...rest}>
-      <Button onClick={handleClick} variant="text">
-        <Flex align="center" gap="sm">
-          <Flex gap="none">
-            <span
-              style={{ paddingLeft: "8px" }}
-              className={styles.iconContainer}
-            >
-              {assetIcon[type]}
+    return (
+      <Flex fluid {...rest} ref={ref}>
+        <Button onClick={handleClick} variant="text">
+          <Flex align="center" gap="sm">
+            <Flex gap="none">
+              <span
+                style={{ paddingLeft: "8px" }}
+                className={styles.iconContainer}
+              >
+                {assetIcon[type]}
+              </span>
+            </Flex>
+            {name}
+            <span className={clsx(styles.statusIcon, styles[status])}>
+              <StatusIcon />
             </span>
           </Flex>
-          {name}
-          <span className={clsx(styles.statusIcon, styles[status])}>
-            <StatusIcon />
-          </span>
-        </Flex>
-      </Button>
-    </Flex>
-  );
-}
+        </Button>
+      </Flex>
+    );
+  },
+);
+
+AssetTreeLeaf.displayName = "AssetTreeLeaf";
 
 export default AssetTreeLeaf;

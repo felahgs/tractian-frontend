@@ -28,7 +28,6 @@ export default function AssetsView({
   const { name: companyName } = company;
 
   const assetsTree = buildTree(locations, assets);
-  console.log("assetsTree", assetsTree);
 
   return (
     <Flex as="section" direction="column" className={styles.container}>

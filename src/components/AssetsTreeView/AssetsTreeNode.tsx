@@ -1,4 +1,4 @@
-import React, { HtmlHTMLAttributes, useState } from "react";
+import React, { HtmlHTMLAttributes, useState, forwardRef } from "react";
 
 import { TreeNode } from "@/lib/assetsTree";
 
@@ -24,55 +24,62 @@ const assetIcon = {
   component: <ComponentIcon />,
 };
 
-function AssetTreeNode({ data, ...rest }: AssetTreeNodeProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const { name, type } = data;
-  const hasChildren = data.children.length > 0;
-  const Chevron = () => (isOpen ? <ArrowDown /> : <ArrowRight />);
-  const handleClick = () => setIsOpen(!isOpen);
+const AssetTreeNode = forwardRef<HTMLDivElement, AssetTreeNodeProps>(
+  ({ data, ...rest }, ref) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const { name, type } = data;
+    const hasChildren = data.children.length > 0;
+    const Chevron = () => (isOpen ? <ArrowDown /> : <ArrowRight />);
 
-  return (
-    <Flex direction="column" gap="none" {...rest}>
-      <Button onClick={handleClick} variant="text">
-        <Flex align="center" gap="sm">
-          <Flex gap="none">
-            {hasChildren ? (
-              <>
-                <span className={styles.iconContainer}>
-                  <Chevron />
+    const handleClick = () => setIsOpen(!isOpen);
+
+    return (
+      <Flex fluid direction="column" gap="none" ref={ref} {...rest}>
+        <Button onClick={handleClick} variant="text">
+          <Flex align="center" gap="sm">
+            <Flex gap="none">
+              {hasChildren ? (
+                <>
+                  <span className={styles.iconContainer}>
+                    <Chevron />
+                  </span>
+                  <span className={styles.iconContainer}>
+                    {assetIcon[type]}
+                  </span>
+                </>
+              ) : (
+                <span
+                  style={{ paddingLeft: "8px" }}
+                  className={styles.iconContainer}
+                >
+                  {assetIcon[type]}
                 </span>
-                <span className={styles.iconContainer}>{assetIcon[type]}</span>
-              </>
-            ) : (
-              <span
-                style={{ paddingLeft: "8px" }}
-                className={styles.iconContainer}
-              >
-                {assetIcon[type]}
-              </span>
-            )}
+              )}
+            </Flex>
+            {name}
           </Flex>
-          {name}
-        </Flex>
-      </Button>
-      {isOpen &&
-        data.children?.map((child) =>
-          child.type === "component" ? (
-            <AssetTreeLeaf
-              style={{ paddingLeft: "20px" }}
-              key={child.id}
-              data={child}
-            />
-          ) : (
-            <AssetTreeNode
-              style={{ paddingLeft: "20px" }}
-              key={child.id}
-              data={child}
-            />
-          ),
-        )}
-    </Flex>
-  );
-}
+        </Button>
+        {isOpen &&
+          data.children?.map((child) =>
+            child.type === "component" ? (
+              <AssetTreeLeaf
+                style={{ paddingLeft: "20px" }}
+                key={child.id}
+                data={child}
+              />
+            ) : (
+              <AssetTreeNode
+                style={{ paddingLeft: "20px" }}
+                key={child.id}
+                data={child}
+              />
+            ),
+          )}
+      </Flex>
+    );
+  },
+);
+
+AssetTreeNode.displayName = "AssetTreeNode";
 
 export default AssetTreeNode;

@@ -24,8 +24,6 @@ export default async function RootLayout({
 }>) {
   const data = await getCompanies();
 
-  console.log("rendering layout");
-
   return (
     <html lang="en" className={inter.className}>
       <body>

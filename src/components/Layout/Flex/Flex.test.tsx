@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import "@testing-library/jest-dom"; // For the `toBeInTheDocument` matcher
+import "@testing-library/jest-dom";
 import Flex from "./Flex";
 
 describe("Flex Component", () => {
@@ -12,7 +12,6 @@ describe("Flex Component", () => {
       </Flex>,
     );
 
-    // Check that both children are rendered
     expect(getByText("Test content")).toBeInTheDocument();
     expect(getByText("Another content")).toBeInTheDocument();
   });

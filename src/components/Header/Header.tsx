@@ -59,7 +59,13 @@ function Header({ companies = [] }: HeaderProps) {
       justify="space-between"
       className={styles.container}
     >
-      <Image height={15} width={103} src={"/logo.png"} alt="tractian logo" />
+      <Image
+        height={15}
+        width={103}
+        priority
+        src={"/logo.svg"}
+        alt="tractian logo"
+      />
       <div ref={refs.setReference} {...getReferenceProps()} />
       <Flex ref={refs.setFloating} {...getFloatingProps()}>
         {companies.map((company, index) => (

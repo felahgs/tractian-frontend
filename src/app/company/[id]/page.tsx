@@ -15,9 +15,6 @@ export default async function AssetsPage({ params }: AssetsPageProps) {
 
   const currentCompany = companies.find((company) => company.id === id);
 
-  console.log("locations", locations);
-  console.log("assets", assets);
-
   return currentCompany ? (
     <AssetsView
       company={currentCompany}
