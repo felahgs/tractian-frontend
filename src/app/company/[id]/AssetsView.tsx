@@ -56,7 +56,6 @@ export default function AssetsView({
 
   console.log("assetsTree", assetsTree);
 
-  debugger;
   return (
     <Flex as="section" direction="column" className={styles.container}>
       <Flex as="header" justify="space-between">

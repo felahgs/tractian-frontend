@@ -10,6 +10,10 @@
   height: calc(100%);
   overflow-y: auto;
   scrollbar-gutter: stable both-edges;
+
+  button {
+    text-wrap: nowrap;
+  }
 }
 
 .nodeSelected {
@@ -60,13 +64,13 @@
 }
 
 .operating {
-  path {
+  path, circle {
     fill: colors.$success !important;
   }
 }
 
 .alert {
-  path {
+  path, circle {
     fill: colors.$danger !important;
   }
 }

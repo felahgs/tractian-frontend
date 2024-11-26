@@ -1,7 +1,7 @@
 "use client";
 import React, { ElementType } from "react";
-import clsx from "clsx"; // Import clsx
-import styles from "./Flex.module.scss"; // Import the SASS styles
+import clsx from "clsx";
+import styles from "./Flex.module.scss";
 
 interface FlexPropsBase extends React.HTMLAttributes<HTMLDivElement> {
   direction?: "row" | "row-reverse" | "column" | "column-reverse";
