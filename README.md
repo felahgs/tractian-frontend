@@ -178,10 +178,10 @@ The following scripts are configured in the project:
 
 There are some improvements to be made:
 
-- Render only tree elements on screen improving performance
+- Render only visible tree elements improving performance
 - Add responsivity
 - Increase code coverage
-- Allow tree items to bem navigated using arrows and switching content with tab
+- Allow tree items to be navigated using arrows and switching content with tab
 
 ---
 
