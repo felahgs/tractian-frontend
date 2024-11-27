@@ -1,242 +1,199 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="left">
 
-## Getting Started
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/felahgs/tractian-frontend">
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-
-# Front End Software Engineer
-### Context
-
-Assets are essential to the operation of the industry, it can include everything from manufacturing equipment to transportation vehicles to power generation systems. Proper management and maintenance is crucial to ensure that they continue to operate efficiently and effectively. A practical way to visualize the hierarchy of assets is through a tree structure.
-
-### Challenge
-
-> 📌  **Build an Tree View Application that shows companies Assets** 
-*(The tree is basically composed with components, assets and locations)*
-
-**Components**
-
-- Components are the parts that constitute an asset.
-- Components are typically associated with an asset, but the customer **may** want to add components without an asset as a parent **or** with a location as a parent
-- Components typically include **vibration** or **energy** sensors, and they have a **operating** or **alert** status
-- On the tree, components are represented by this icon:
-![component](../assets/component.png)
+  <a href="https://github.com/tgmarinho/README-ecoleta/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/felahgs/tractian-frontend">
+  </a>
     
+   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
 
-**Assets/Sub-Assets**
+</p>
+<h1 align="center">
+  Tractian Front-End Challenge
+</h1>
 
-- Assets have a set of components
-- Some assets are very large, like a conveyor belt and they **may** contain N sub-assets.
-- Assets are typically associated with a location, but the customer **may** want to add assets without specifying a location as a parent.
-- You can know that an item is a **asset**, if they have another assets or components as children.
-- On the tree, assets are represented by this icon:
-![asset](../assets/asset.png)
-    
+<p align="center">
+ <a href="#-about">About</a> •
+ <a href="#%EF%B8%8F-features">Features</a> •
+ <a href="#-layout">Layout</a> • 
+ <a href="#-installing-and-running">Installing</a> • 
+ <a href="#-libraries">Libraries</a> • 
+ <a href="#-deploy">Deploy</a> • 
+ <a href="#-scripts">Scripts</a> 
+</p>
 
-**Locations/Sub-Locations**
+## 💻 About
 
-- Locations represent the places where the assets are located. For very large locations, the customer may want to split them to keep their hierarchy more organized. Therefore, locations may contain N sub-locations.
-- On the tree, locations are represented by this icon:
-![location](../assets/location.png)
-    
+**Front-end Challenge from [Tractian](https://github.com/tractian/challenges/tree/main/front-end)**  
 
-In summary, a tree may like look this:
+The goal of this challenge was to implement clean, concise, and maintainable code while adhering to all functional and style specifications provided. The objective was to develop a simple CRUD application for managing credit cards, storing all saved information in the browser's local storage.  
 
-```
-- Root
-  |
-  └── Location A
-  |     |
-  |     ├── Asset 1
-  |     |     ├── Component A1
-  |     |     ├── Component A2
-  |     |
-  |     ├── Asset 2
-  |           ├── Component B1
-  |           ├── Component B2
-  |
-  ├── Location B
-  |     ├── Location C
-  |     |     |
-  |     |     ├── Asset 3
-  |     |     |     ├── Component C1
-  |     |     |     ├── Component C2
-  |     |     |
-  |     |     ├── Component D1
-  |
-  └── Component X
-```
+The development was done using [React](https://react.dev/), [NextJS](https://nextjs.org/docs) and [TypeScript](https://www.typescriptlang.org/).
 
-## Features
+Code quality tools such as [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) were also set up, along with [Husky](https://typicode.github.io/husky/#/) for pre-commit and pre-push checking for vulnerable versions, formatting rules, packages versions and tests consistences. 
+Commits are also stricted using the [semantic-comit rules](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716).  
+
+The project includes [Storybook](https://storybook.js.org/) for inspecting each component in the application and understanding how they function.  
+
+The functional page can be accessed at: [https://tractian-frontend-orcin.vercel.app](https://tractian-frontend-orcin.vercel.app/)
+
+---
+
+## ⚙️ Features
 
 **Asset Page**
 
-- The Asset Tree is the core feature, offering a visual Tree representation of the company's asset hierarchy.
+- The Asset page consists in two man components side to side displaying a tree of assets classified by its Location > Assets > Components. The right panel shows the information of the selected Asset.
 - **Sub-Features:**
     1. **Visualization**
         - Present a dynamic tree structure displaying components, assets, and locations.
+          
+     ```
+    - Root
+      |
+      └── Location A
+      |     |
+      |     ├── Asset 1
+      |     |     ├── Component A1
+      |     |     ├── Component A2
+      |     |
+      |     ├── Asset 2
+      |           ├── Component B1
+      |           ├── Component B2
+      |
+      ├── Location B
+      |     ├── Location C
+      |     |     |
+      |     |     ├── Asset 3
+      |     |     |     ├── Component C1
+      |     |     |     ├── Component C2
+      |     |     |
+      |     |     ├── Component D1
+      |
+      └── Component X
+    ```
     2. **Filters**
         
         **Text Search**
-        
-        - Users can search for specific components/assets/locations within the asset hierarchy.
+        - Text search input.
+        - Users can search for specific components/assets/locations within the asset hierarchy. The tree will be filtered showing the entire path for the nodes matching the searched string and all its descendants
         
         **Energy Sensors**
-        
-        - Implement a filter to isolate energy sensors within the tree.
+        - Button toggle
+        - Filter the paths for all sensors of type "energy".
         
         **Critical Sensor Status**
-        
-        - Integrate a filter to identify assets with critical sensor status.
-    - When the filters are applied, the asset parents **can't** be hidden. The user must know the entire asset path. The items that are not related to the asset path, must be hidden
+        - Button toggle
+        - Filter the paths for all senors in critical state. Identified by an red icon.
 
-### Technical Data
-You have Assets and Locations, you need to relate both of them to build the Tree.
+---
 
-**Locations Collection**
+## 🎨 Layout
 
-Contains only Locations and sub locations (Composed with name, id and a optional parentId)
-```json
-{
-  "id": "65674204664c41001e91ecb4",
-  "name": "PRODUCTION AREA - RAW MATERIAL",
-  "parentId": null
-}
+https://github.com/user-attachments/assets/5ea2cc3e-66f6-44cf-b40a-f99ca8777022
+
+---
+
+## 🚗 Installing and Running
+
+### Pré-requisitos
+
+First of all be certain to have the following applications installed.
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable).
+
+#### ▶️ Rodando a aplicação (servidor)
+
+```bash
+
+# Clone repository
+$ git clone git@github.com:felahgs/tractian-frontend.git
+
+# Access the application folder
+$ cd tractian-frontend
+
+# Install dependencies
+$ yarn install
+
+# Start the application
+$ yarn dev
+
+# A aplicação será aberta por padrão na porta:3000 - acesse http://localhost:3000
 ```
 
-If the Location has a parentId, it means it is a sub location
-```json
-{
-  "id": "656a07b3f2d4a1001e2144bf",
-  "name": "CHARCOAL STORAGE SECTOR",
-  "parentId": "65674204664c41001e91ecb4"
-}
+#### 🧭 Starting Storybook
+
+
+```bash
+
+$ git clone git@github.com:felahgs/tractian-frontend.git
+
+$ cd tractian-frontend
+
+$ yarn install
+
+$ yarn run storybook
+
+# The application will be accessible from  http://localhost:6006/
+
 ```
 
-The visual representation:
-```
-- PRODUCTION AREA - RAW MATERIAL
-  |
-  ├── CHARCOAL STORAGE SECTOR
-```
+---
 
-    
-**Assets Collection**
+## 📚 Libraries
 
-Contains assets, sub assets and components (Composed by name, id and a optional locationId, parentId and sensorType)
+- [Jest](https://jestjs.io/pt-BR/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) Creation of unity tests.
+- [axios](https://axios-http.com/ptbr/docs/intro)  HTTP Client.
+- [sass](https://sass-lang.com/)  Styling.
+- [clsx](https://www.npmjs.com/package/clsx)  Class name constructors
+- [@svgr/webpack](https://www.npmjs.com/package/@svgr/webpack)  SVG components configuration.
+- [lodash.debounce](https://www.npmjs.com/package/lodash.debounce)  Adding debounce features.
+- [floating-ui](https://floating-ui.com/docs/uselistnavigation)  Adding control and more control accessibility to menus.
 
-If the item has a sensorType, it means it is a component. If it does not have a location or a parentId, it means he is unliked from any asset or location in the tree.
-```json
-{
-  "id": "656734821f4664001f296973",
-  "name": "Fan - External",
-  "parentId": null,
-  "sensorId": "MTC052",
-  "sensorType": "energy",
-  "status": "operating",
-  "gatewayId": "QHI640",
-  "locationId": null
-}
-```
+  ***
 
-If the item has a location and does not have a sensorId, it means he is an asset with a location as parent, from the location collection
-```json
-{
-  "id": "656a07bbf2d4a1001e2144c2",
-  "name": "CONVEYOR BELT ASSEMBLY",
-  "locationId": "656a07b3f2d4a1001e2144bf"
-}
-```
+## 🚀 Deploy
 
-If the item has a parentId and does not have a sensorId, it means he is an asset with another asset as a parent
-```json
-{
-  "id": "656a07c3f2d4a1001e2144c5",
-  "name": "MOTOR TC01 COAL UNLOADING AF02",
-  "parentId": "656a07bbf2d4a1001e2144c2"
-}
-```
+The deploy is made using the versel application for commits made into the main branch.
 
-If the item has a sensorType, it means it is a component. If it does have a location or a parentId, it means he has an asset or Location as parent    
-```json
-{
-  "id": "656a07cdc50ec9001e84167b",
-  "name": "MOTOR RT COAL AF01",
-  "parentId": "656a07c3f2d4a1001e2144c5",
-  "sensorId": "FIJ309",
-  "sensorType": "vibration",
-  "status": "operating",
-  "gatewayId": "FRH546"
-}
-```
-        
-To summarize, this is the visual representation of this items on the Tree
-```
-- ROOT
-  |
-  ├── PRODUCTION AREA - RAW MATERIAL [Location]
-  |     |
-  |     ├── CHARCOAL STORAGE SECTOR [Sub-Location]
-  |     |     |
-  |     |     ├── CONVEYOR BELT ASSEMBLY [Asset]
-  |     |     |     |
-  |     |     |     ├── MOTOR TC01 COAL UNLOADING AF02 [Sub-Asset]
-  |     |     |     |     |
-  |     |     |     |     ├── MOTOR RT COAL AF01 [Component - Vibration]
-  |
-  ├── Fan - External [Component - Vibration]
-```
+## 📜 Scripts
 
-### Design
-[Figma Link](https://www.figma.com/file/F52Yv8RmGoGOYcV9CiuIZ1/%5BCareers%5D-Frontend-Challenge-v2?type=design&node-id=0-1&mode=design&t=r3n2A4W0ZFUwVjAs-0)
+The scripts can be executed using the command `yarn [script name]`.  
+The following scripts are configured in the project:
 
-> 💡 You don't have to exactly match figma's design! Please, be able to abstract well the presented problem and define it yourself what you consider most important and think with the user's head!
+- **dev**: Starts the application in development mode at "http://localhost:3000".
+- **build**: Builds the script for deployment.
+- **start**: Starts an application in production mode at "http://localhost:3000".
+- **lint**: Runs lint tests on the project and outputs files with code standard errors.
+- **tsc**: Checks the type definitions across the codebase and outputs files with incorrect typings.
+- **prepare**: Sets up pre-hooks for Husky.
+- **test**: Run tests with coverage.
+- **storybook**: Starts Storybook at "http://localhost:6000".
+- **build-storybook**: Builds Storybook for deployment.
+- **check-outdated**: Check if every package used in production is updated.
 
-### Demo API
-The API only works for GET requests, there are 3 endpoints:
+---
 
-- `/companies` - Returns all companies
-- `/companies/:companyId/locations` - Returns all locations of the company
-- `/companies/:companyId/assets` - Returns all assets of the company
+## 🔨 Further improvements
 
-API: [fake-api.tractian.com](fake-api.tractian.com)
+There are some improvements to be made:
 
-### In the README
-- Include a video demonstrating the application opening for each company and selecting a filter.
-- Describe which points of the project you would improve if you had more time.
+- Render only tree elements on screen improving performance
+- Add responsivity
+- Increase code coverage
+- Allow tree items to bem navigated using arrows and switching content with tab
 
-### Extra
-You may use libraries for anything you find essential, **except** for the Asset Tree and the UI.
-In this challenge, performance and usability count as **bonus** points.
+---
+
+## 🐹 Author
+
+<a href="https://https://github.com/felahgs">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/felahgs" width="100px;" alt=""/>
+ <br />
+ <b>Felipe Souza</b></a>
+ <br />
+
+[![Linkedin Badge](https://img.shields.io/badge/-Felipe-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/felipe-garcia-de-souza-aa9aa773/)](https://www.linkedin.com/in/felipe-garcia-de-souza-aa9aa773/)
+[![Gmail Badge](https://img.shields.io/badge/-fgsouza93@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:fgsouza93@gmail.com)](mailto:fgsouza93@gmail.com)
+
+---
