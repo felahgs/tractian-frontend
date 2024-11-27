@@ -18,13 +18,14 @@ const config: Config = {
   ],
   coveragePathIgnorePatterns: [
     "/\\index.ts",
-    "/\\types.ts",
     "\\.css$|\\.scss$|\\.sass$",
     "\\.json$",
+    "types\\.ts$",
+    "\\.types\\.ts$",
   ],
   coverageDirectory: "coverage",
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/$1",
+    "^@/(.*)$": "<rootDir>/src/$1", // Adjust this based on your folder structure
   },
 };
 

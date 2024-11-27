@@ -16,11 +16,11 @@ import { buildTree } from "@/lib/assetsTree/assetsTree";
 import { AssetTreeContext } from "@/contexts/AssetTreeContext";
 import { useReducer, useState } from "react";
 import { TreeLeaf } from "@/lib/assetsTree";
-import { initialState, treeFilterReducer } from "../../reducer/reducer";
+import { initialState, treeFilterReducer } from "../../../reducer/reducer";
 import {
   TOGGLE_CRITICAL_FILTER,
   TOGGLE_ENERGY_FILTER,
-} from "@/app/reducer/action";
+} from "@/reducer/actions";
 
 interface AssetsViewProps {
   company: CompanyData;

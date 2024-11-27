@@ -16,7 +16,7 @@ import AssetsTree from "./AssetsTree";
 
 import { TreeLeaf, TreeNode } from "@/lib/assetsTree";
 import { AssetTreeContext } from "@/contexts/AssetTreeContext";
-import { SET_SEARCH_STRING } from "@/app/reducer/action";
+import { SET_SEARCH_STRING } from "@/reducer/actions";
 
 import styles from "./AssetsTreeView.module.scss";
 

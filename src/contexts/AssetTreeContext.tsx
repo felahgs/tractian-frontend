@@ -1,9 +1,9 @@
-import { Action } from "@/app/reducer/action";
-import { initialState, TreeFilterState } from "@/app/reducer/reducer";
+import { Action } from "@/reducer/actions";
+import { initialState, TreeFilterState } from "@/reducer/reducer";
 import { TreeLeaf } from "@/lib/assetsTree";
 import { createContext } from "react";
 
-interface ContextTreeType {
+export interface ContextTreeType {
   selectedAsset: TreeLeaf | null;
   filterState: TreeFilterState;
   dispatchFilterState: (action: Action) => void;

@@ -3,7 +3,7 @@ import {
   SET_SEARCH_STRING,
   TOGGLE_ENERGY_FILTER,
   TOGGLE_CRITICAL_FILTER,
-} from "./action";
+} from "./actions";
 
 export type TreeFilterState = {
   searchString: string;
