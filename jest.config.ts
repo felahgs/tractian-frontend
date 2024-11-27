@@ -6,12 +6,15 @@ const createJestConfig = nextJest({
 });
 
 const config: Config = {
-  coverageProvider: "v8",
+  coverageProvider: "babel",
+  coverageReporters: ["json", "lcov", "clover", "text", "text-summary"],
   testEnvironment: "jsdom",
+  setupFilesAfterEnv: ["./jest.setup.js"],
+
   clearMocks: true,
   collectCoverage: true,
   collectCoverageFrom: [
-    // "./src/components/**",
+    "./src/components/**",
     "./src/lib/**",
     "./src/services/**",
     "./src/contexts/**",
@@ -22,10 +25,19 @@ const config: Config = {
     "\\.json$",
     "types\\.ts$",
     "\\.types\\.ts$",
+    "\\.stories\\.tsx$",
   ],
   coverageDirectory: "coverage",
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1", // Adjust this based on your folder structure
+  },
+  coverageThreshold: {
+    global: {
+      branches: 90,
+      functions: 90,
+      lines: 90,
+      statements: 90,
+    },
   },
 };
 

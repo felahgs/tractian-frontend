@@ -28,6 +28,38 @@ describe("Flex Component", () => {
     expect(divElement).toHaveClass("custom-class");
   });
 
+  it("should render with a custom className", () => {
+    const { container } = render(
+      <Flex fluidH className="custom-class">
+        <div>Test content</div>
+      </Flex>,
+    );
+
+    const divElement = container.querySelector("div");
+    expect(divElement).toBeInTheDocument();
+    expect(divElement).toHaveClass("custom-class");
+  });
+
+  it("should render with correctly with fluid prop", () => {
+    const { getByText } = render(
+      <Flex fluid>
+        <div>fluid</div>
+      </Flex>,
+    );
+
+    expect(getByText("fluid")).toBeInTheDocument();
+  });
+
+  it("should render with correctly with fluidH prop", () => {
+    const { getByText } = render(
+      <Flex fluidH>
+        <div>fluidH</div>
+      </Flex>,
+    );
+
+    expect(getByText("fluidH")).toBeInTheDocument();
+  });
+
   it("should apply the correct gap value for small, medium, and large", () => {
     const { container: smallContainer } = render(
       <Flex gap="sm">
