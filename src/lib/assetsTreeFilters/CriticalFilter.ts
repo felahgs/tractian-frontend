@@ -12,8 +12,9 @@ export class CriticalFilter implements FilterRule {
   }
 
   apply(node: TreeLeaf | TreeNode): boolean {
+    if (!this.criticalFilterOn) return true;
     if (node.type === "component") {
-      if (this.criticalFilterOn && node.status !== this.status) {
+      if (node.status !== this.status) {
         return false;
       }
       return true;

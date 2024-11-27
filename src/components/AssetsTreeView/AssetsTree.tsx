@@ -1,8 +1,13 @@
 import React, { useContext } from "react";
 
 import Flex from "@/components/Layout/Flex";
+import Text from "@/components/Text";
 import { filterTreeList, TreeLeaf, TreeNode } from "@/lib/assetsTree";
-import { EnergyFilter, CriticalFilter } from "@/lib/assetsTreeFilters";
+import {
+  EnergyFilter,
+  CriticalFilter,
+  NameSearchFilter,
+} from "@/lib/assetsTreeFilters";
 
 import { AssetTreeContext } from "@/contexts/AssetTreeContext";
 
@@ -17,12 +22,13 @@ interface AssetsTreeProps {
 
 function AssetsTree({ data }: AssetsTreeProps) {
   const { filterState } = useContext(AssetTreeContext);
-  const { energyFilterOn, criticalFilterOn } = filterState;
+  const { energyFilterOn, criticalFilterOn, searchString } = filterState;
   const hasAnyFilterActive = Object.values(filterState).some(
     (value) => !!value,
   );
 
   const filters = [
+    new NameSearchFilter(searchString),
     new EnergyFilter(energyFilterOn, "energy"),
     new CriticalFilter(criticalFilterOn, "alert"),
   ];
@@ -34,6 +40,23 @@ function AssetsTree({ data }: AssetsTreeProps) {
   const filteredTree = hasAnyFilterActive
     ? filterTreeList(data, filterNodes)
     : data;
+
+  if (filteredTree.length === 0) {
+    return (
+      <Flex
+        style={{ paddingBottom: "60px" }}
+        p="sm"
+        align="center"
+        justify="center"
+        fluidH
+      >
+        <Text align="center" type="caption">
+          Não foram encontrados ativos que correspondam aos filtros
+          selecionados.
+        </Text>
+      </Flex>
+    );
+  }
 
   return (
     <Flex p="sm" gap="none" className={styles.nodeTree} direction="column">

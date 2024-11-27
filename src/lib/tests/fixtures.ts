@@ -124,6 +124,7 @@ export const treeList: Array<TreeNode | TreeLeaf> = [
     parentId: null,
     type: "location",
     children: [],
+    path: new Map([["2", "Location B"]]),
   },
   {
     id: "3",
@@ -142,6 +143,10 @@ export const treeList: Array<TreeNode | TreeLeaf> = [
         sensorId: null,
         type: "asset",
         children: [],
+        path: new Map([
+          ["3", "Location C"],
+          ["7", "Asset 2"],
+        ]),
       },
       {
         id: "13",
@@ -153,6 +158,10 @@ export const treeList: Array<TreeNode | TreeLeaf> = [
         gatewayId: null,
         sensorId: null,
         type: "asset",
+        path: new Map([
+          ["3", "Location C"],
+          ["13", "Asset 4"],
+        ]),
         children: [
           {
             gatewayId: "QBK282",
@@ -164,6 +173,11 @@ export const treeList: Array<TreeNode | TreeLeaf> = [
             sensorType: "vibration",
             status: "alert",
             type: "component",
+            path: new Map([
+              ["3", "Location C"],
+              ["13", "Asset 4"],
+              ["10", "Component 3"],
+            ]),
           },
           {
             gatewayId: "VHS387",
@@ -175,6 +189,11 @@ export const treeList: Array<TreeNode | TreeLeaf> = [
             sensorType: "vibration",
             status: "alert",
             type: "component",
+            path: new Map([
+              ["3", "Location C"],
+              ["13", "Asset 4"],
+              ["11", "Component 4"],
+            ]),
           },
           {
             gatewayId: "VZO694",
@@ -186,10 +205,16 @@ export const treeList: Array<TreeNode | TreeLeaf> = [
             sensorType: "vibration",
             status: "alert",
             type: "component",
+            path: new Map([
+              ["3", "Location C"],
+              ["13", "Asset 4"],
+              ["12", "Component 5"],
+            ]),
           },
         ],
       },
     ],
+    path: new Map([["3", "Location C"]]),
   },
   {
     id: "4",
@@ -213,6 +238,11 @@ export const treeList: Array<TreeNode | TreeLeaf> = [
             gatewayId: null,
             sensorId: null,
             type: "asset",
+            path: new Map([
+              ["4", "Location D"],
+              ["1", "Location A"],
+              ["5", "Asset 1"],
+            ]),
             children: [
               {
                 id: "9",
@@ -224,6 +254,12 @@ export const treeList: Array<TreeNode | TreeLeaf> = [
                 gatewayId: null,
                 sensorId: null,
                 type: "asset",
+                path: new Map([
+                  ["4", "Location D"],
+                  ["1", "Location A"],
+                  ["5", "Asset 1"],
+                  ["9", "Asset 3"],
+                ]),
                 children: [
                   {
                     gatewayId: "FRH546",
@@ -235,14 +271,26 @@ export const treeList: Array<TreeNode | TreeLeaf> = [
                     sensorType: "vibration",
                     status: "operating",
                     type: "component",
+                    path: new Map([
+                      ["4", "Location D"],
+                      ["1", "Location A"],
+                      ["5", "Asset 1"],
+                      ["9", "Asset 3"],
+                      ["8", "Component 2"],
+                    ]),
                   },
                 ],
               },
             ],
           },
         ],
+        path: new Map([
+          ["4", "Location D"],
+          ["1", "Location A"],
+        ]),
       },
     ],
+    path: new Map([["4", "Location D"]]),
   },
   {
     gatewayId: "QHI640",
@@ -254,6 +302,7 @@ export const treeList: Array<TreeNode | TreeLeaf> = [
     sensorType: "energy",
     status: "operating",
     type: "component",
+    path: new Map([["6", "Component 1"]]),
   },
 ];
 
@@ -262,6 +311,7 @@ export const tree: TreeNode | TreeLeaf = {
   name: "Location C",
   parentId: null,
   type: "location",
+  path: new Map([["3", "Location C"]]),
   children: [
     {
       id: "7",
@@ -274,6 +324,7 @@ export const tree: TreeNode | TreeLeaf = {
       sensorId: null,
       type: "asset",
       children: [],
+      path: new Map(),
     },
     {
       id: "13",
@@ -285,6 +336,10 @@ export const tree: TreeNode | TreeLeaf = {
       gatewayId: null,
       sensorId: null,
       type: "asset",
+      path: new Map([
+        ["3", "Location C"],
+        ["13", "Asset 4"],
+      ]),
       children: [
         {
           gatewayId: "QBK282",
@@ -296,6 +351,11 @@ export const tree: TreeNode | TreeLeaf = {
           sensorType: "vibration",
           status: "alert",
           type: "component",
+          path: new Map([
+            ["3", "Location C"],
+            ["13", "Asset 4"],
+            ["10", "Component 3"],
+          ]),
         },
         {
           gatewayId: "VHS387",
@@ -307,6 +367,11 @@ export const tree: TreeNode | TreeLeaf = {
           sensorType: "vibration",
           status: "alert",
           type: "component",
+          path: new Map([
+            ["3", "Location C"],
+            ["13", "Asset 4"],
+            ["11", "Component 4"],
+          ]),
         },
         {
           gatewayId: "VZO694",
@@ -318,6 +383,11 @@ export const tree: TreeNode | TreeLeaf = {
           sensorType: "vibration",
           status: "alert",
           type: "component",
+          path: new Map([
+            ["3", "Location C"],
+            ["13", "Asset 4"],
+            ["12", "Component 5"],
+          ]),
         },
       ],
     },
@@ -342,6 +412,10 @@ export const filteredTreeList: Array<TreeNode | TreeLeaf> = [
         gatewayId: null,
         sensorId: null,
         type: "asset",
+        path: new Map([
+          ["3", "Location C"],
+          ["13", "Asset 4"],
+        ]),
         children: [
           {
             gatewayId: "QBK282",
@@ -353,6 +427,11 @@ export const filteredTreeList: Array<TreeNode | TreeLeaf> = [
             sensorType: "vibration",
             status: "alert",
             type: "component",
+            path: new Map([
+              ["3", "Location C"],
+              ["13", "Asset 4"],
+              ["10", "Component 3"],
+            ]),
           },
           {
             gatewayId: "VHS387",
@@ -364,6 +443,11 @@ export const filteredTreeList: Array<TreeNode | TreeLeaf> = [
             sensorType: "vibration",
             status: "alert",
             type: "component",
+            path: new Map([
+              ["3", "Location C"],
+              ["13", "Asset 4"],
+              ["11", "Component 4"],
+            ]),
           },
           {
             gatewayId: "VZO694",
@@ -375,9 +459,15 @@ export const filteredTreeList: Array<TreeNode | TreeLeaf> = [
             sensorType: "vibration",
             status: "alert",
             type: "component",
+            path: new Map([
+              ["3", "Location C"],
+              ["13", "Asset 4"],
+              ["12", "Component 5"],
+            ]),
           },
         ],
       },
     ],
+    path: new Map([["3", "Location C"]]),
   },
 ];

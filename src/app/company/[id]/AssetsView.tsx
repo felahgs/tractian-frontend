@@ -54,8 +54,6 @@ export default function AssetsView({
     dispatchFilterState({ type: TOGGLE_CRITICAL_FILTER });
   };
 
-  console.log("assetsTree", assetsTree);
-
   return (
     <Flex as="section" direction="column" className={styles.container}>
       <Flex as="header" justify="space-between">

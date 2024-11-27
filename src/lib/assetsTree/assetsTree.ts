@@ -1,5 +1,5 @@
 import { LocationData, AssetData } from "@/services/companies";
-import { TreeLeaf, TreeNode } from "./types";
+import { TreeLeaf, TreeNode, TreeNodeCallback } from "./types";
 
 export function buildTree(locations: LocationData[], assets: AssetData[]) {
   const map = new Map();
@@ -9,12 +9,12 @@ export function buildTree(locations: LocationData[], assets: AssetData[]) {
   createAssetsNodesMap(map, assets);
   buildTreesFromMap(treeList, map, locations, assets);
 
-  return treeList;
+  return addPathsToTree(treeList);
 }
 
 export function findNode(
-  tree: TreeNode | TreeLeaf, // Single tree node (or leaf)
-  callback: (node: TreeLeaf | TreeNode) => boolean,
+  tree: TreeNode | TreeLeaf,
+  callback: TreeNodeCallback,
 ): TreeLeaf | TreeNode | null {
   let result: TreeLeaf | TreeNode | null = null;
 
@@ -38,12 +38,49 @@ export function findNode(
   return result;
 }
 
+export function filterTreeList(
+  treeList: Array<TreeLeaf | TreeNode>,
+  callback: (node: TreeLeaf | TreeNode) => boolean,
+): Array<TreeLeaf | TreeNode> {
+  const filteredList: Array<TreeLeaf | TreeNode> = [];
+
+  function filterTreeRecursive(node: TreeLeaf | TreeNode) {
+    const hasChildren = node.type !== "component" && node.children.length > 0;
+
+    const updatedNode = { ...node };
+
+    if (hasChildren) {
+      (updatedNode as TreeNode).children = [];
+      node.children.forEach((child) => {
+        if (findNode(child, callback)) {
+          (updatedNode as TreeNode).children.push(filterTreeRecursive(child));
+        }
+      });
+    }
+
+    return updatedNode;
+  }
+
+  treeList.forEach((tree) => {
+    if (findNode(tree, callback)) {
+      filteredList.push(filterTreeRecursive(tree));
+    }
+  });
+
+  return filteredList;
+}
+
 function createLocationNodesMap(
   map: Map<string, TreeLeaf | TreeNode>,
   locations: LocationData[],
 ) {
   locations.forEach((item) => {
-    map.set(item.id, { ...item, type: "location", children: [] });
+    map.set(item.id, {
+      ...item,
+      type: "location",
+      children: [],
+      path: new Map(),
+    });
   });
 }
 
@@ -55,8 +92,8 @@ function createAssetsNodesMap(
     map.set(
       item.id,
       item.sensorType !== null
-        ? { ...item, type: "component" }
-        : { ...item, type: "asset", children: [] },
+        ? { ...item, type: "component", path: new Map() }
+        : { ...item, type: "asset", children: [], path: new Map() },
     );
   });
 }
@@ -102,34 +139,31 @@ function addNodeToParent(
   }
 }
 
-export function filterTreeList(
+export function addPathsToTree(
   treeList: Array<TreeLeaf | TreeNode>,
-  callback: (node: TreeLeaf | TreeNode) => boolean,
 ): Array<TreeLeaf | TreeNode> {
-  const filteredList: Array<TreeLeaf | TreeNode> = [];
+  const traverseTree = (
+    node: TreeNode | TreeLeaf,
+    currentPath: Map<string, string>,
+  ) => {
+    // Create a new Map for the current node's path
+    const path = new Map(currentPath);
+    path.set(node.id, node.name);
 
-  function filterTreeRecursive(node: TreeLeaf | TreeNode) {
-    const hasChildren = node.type !== "component" && node.children.length > 0;
+    // Assign the path as a Map to the node
+    node.path = path;
 
-    const updatedNode = { ...node };
-
-    if (hasChildren) {
-      (updatedNode as TreeNode).children = [];
-      node.children.forEach((child) => {
-        if (findNode(child, callback)) {
-          (updatedNode as TreeNode).children.push(filterTreeRecursive(child));
-        }
+    if ((node as TreeNode).children) {
+      (node as TreeNode).children.forEach((child) => {
+        traverseTree(child, path); // Pass the updated path to the child
       });
     }
+  };
 
-    return updatedNode;
-  }
-
+  // Start the traversal for each root node in the tree list
   treeList.forEach((tree) => {
-    if (findNode(tree, callback)) {
-      filteredList.push(filterTreeRecursive(tree));
-    }
+    traverseTree(tree, new Map());
   });
 
-  return filteredList;
+  return treeList;
 }

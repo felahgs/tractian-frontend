@@ -11,8 +11,9 @@ export class EnergyFilter implements FilterRule {
   }
 
   apply(node: TreeLeaf | TreeNode): boolean {
+    if (!this.energyFilterOn) return true;
     if (node.type === "component") {
-      if (this.energyFilterOn && node.sensorType !== this.sensorType) {
+      if (node.sensorType !== this.sensorType) {
         return false;
       }
       return true;
