@@ -3,5 +3,14 @@
     "next/core-web-vitals",
     "next/typescript",
     "plugin:storybook/recommended"
-  ]
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_", // Ignore unused function arguments starting with '_'
+        "varsIgnorePattern": "^_" // Ignore unused variables starting with '_'
+      }
+    ]
+  }
 }
