@@ -27,7 +27,7 @@
 
 **Front-end Challenge from [Tractian](https://github.com/tractian/challenges/tree/main/front-end)**  
 
-The goal of this challenge was to implement clean, concise, and maintainable code while adhering to all functional and style specifications provided. The objective was to develop a simple CRUD application for managing credit cards, storing all saved information in the browser's local storage.  
+The goal of this challenge was to implement an asset manager page based on location and sub components. There can be a excessive number of assets and performance is a critical issue.  
 
 The development was done using [React](https://react.dev/), [NextJS](https://nextjs.org/docs) and [TypeScript](https://www.typescriptlang.org/).
 
@@ -97,7 +97,7 @@ https://github.com/user-attachments/assets/5ea2cc3e-66f6-44cf-b40a-f99ca8777022
 
 ## 🚗 Installing and Running
 
-### Pré-requisitos
+### Pre-requisites
 
 First of all be certain to have the following applications installed.
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable).
